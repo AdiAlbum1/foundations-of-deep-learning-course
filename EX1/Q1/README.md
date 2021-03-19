@@ -25,8 +25,7 @@ linear and RBF kernels, report the train and test accuracies obtained.
 ```
 ./dataset/cifar-10-batches-py/...
 ```
-3. Use
+3. Use [dataset_extractor.py](dataset_extractor.py)'s
 ```python
 load_dataset()
 ```
-of [dataset_extractor.py](dataset_extractor.py)
