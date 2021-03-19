@@ -56,12 +56,12 @@ pip install -r requirments.txt
 ```
 
 ## Usage
+1. For training baseline model:
 ```sh
-python classify.py
+python train_baseline_model.py
 ```
 
 ## Results
-| Method        | Test Accuracy           |
-| :-------------: |:-------------:|
-| Linear SVM      | 29.8% |
-| RBF SVM      | 44.6%      |
+```
+TBD
+```
