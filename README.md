@@ -1,1 +1,1 @@
-"# foundations-of-deep-learning-course" 
+# Foundations of Deep Learning Course

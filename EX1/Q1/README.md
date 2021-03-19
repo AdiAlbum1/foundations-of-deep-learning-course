@@ -1,4 +1,4 @@
-# Exercise 1 - Q1:
+# Exercise 1 - Q1
 
 ## Table of Contents
 
