@@ -5,6 +5,7 @@
 - [Task](#task)
 - [Installation](#installation)
 - [Extract Dataset](#extract_dataset)
+- [Usage](#usage)
 
 ## Task
 
