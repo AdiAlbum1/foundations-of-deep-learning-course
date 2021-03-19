@@ -34,10 +34,6 @@ pip install -r requirments.txt
 ```
 ./dataset/cifar-10-batches-py/...
 ```
-3. Use [dataset_extractor.py](dataset_extractor.py)'s
-```python
-load_dataset()
-```
 
 ## Usage
 ```sh
