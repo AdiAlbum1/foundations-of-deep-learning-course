@@ -1,3 +1,4 @@
+import numpy as np
 import pickle
 import random
 
@@ -34,6 +35,9 @@ def subsample_dataset(images, labels):
 
     return subsampled_images, subsampled_labels
 
+def normalize_dataset(images):
+    normalized_images = [image / 255.0 for image in images]
+    return normalized_images
 
 if __name__ == "__main__":
     # Load whole CIFAR-10 dataset
@@ -42,5 +46,5 @@ if __name__ == "__main__":
     # Subsample 10% of CIFAR-10 dataset
     images, labels = subsample_dataset(all_images, all_labels)
 
-    print(len(images))
-    print(len(labels))
+    # Normalize images to [0,1] range by dividing by 255.0
+    images = normalize_dataset(images)
