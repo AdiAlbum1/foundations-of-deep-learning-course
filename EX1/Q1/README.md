@@ -3,6 +3,7 @@
 ## Table of Contents
 
 - [Task](#task)
+- [Installation](#installation)
 - [Extract Dataset](#extract_dataset)
 
 ## Task
@@ -18,6 +19,13 @@ and normalize the inputs to span the range [0,1].
 2. As a baseline, use the sklearn python package to implement an SVM classifier. For both the
 linear and RBF kernels, report the train and test accuracies obtained.
 
+## Installation
+```sh
+git clone https://github.com/AdiAlbum1/foundations-of-deep-learning-course/
+cd foundations-of-deep-learning-course/EX1/Q1
+pip install -r requirments.txt
+```
+
 ## Extract Dataset
 
 1. [Download dataset](https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz)
@@ -28,4 +36,9 @@ linear and RBF kernels, report the train and test accuracies obtained.
 3. Use [dataset_extractor.py](dataset_extractor.py)'s
 ```python
 load_dataset()
+```
+
+## Usage
+```sh
+python classify.py
 ```
