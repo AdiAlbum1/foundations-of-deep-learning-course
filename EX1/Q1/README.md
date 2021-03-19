@@ -6,6 +6,7 @@
 - [Installation](#installation)
 - [Extract Dataset](#extract_dataset)
 - [Usage](#usage)
+- [Results](#results)
 
 ## Task
 
@@ -39,3 +40,9 @@ pip install -r requirments.txt
 ```sh
 python classify.py
 ```
+
+## Results
+| Method        | Test Accuracy           |
+| :-------------: |:-------------:|
+| Linear SVM      | 29.8% |
+| RBF SVM      | 44.6%      |
