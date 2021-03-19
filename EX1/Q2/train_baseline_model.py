@@ -8,7 +8,7 @@ if __name__ == "__main__":
 
     # batch_size is batch size; D_in is input dimension;
     # H is hidden dimension; D_out is output dimension.
-    epochs = 30
+    epochs = 300
     batch_size, D_in, H, D_out = 64, 3072, 256, 10
 
     # load dataset
@@ -55,10 +55,10 @@ if __name__ == "__main__":
             loss.backward()
             optimizer.step()
 
-        # print epoch statistics
+        # calculate train loss
         num_train_batches = 0
         running_loss = 0.0
-        for i_batch, sample_batched in enumerate(train_dataloader): # TODO add validation
+        for i_batch, sample_batched in enumerate(train_dataloader):
             images, labels = sample_batched
             num_train_batches += 1
 
@@ -66,6 +66,19 @@ if __name__ == "__main__":
             loss = loss_fn(outputs, labels)
             running_loss += loss.item()
 
-        epoch_loss = running_loss / num_train_batches
-        print('[%d] train_loss: %.3f' %
-              (epoch + 1, epoch_loss))
+        epoch_train_loss = running_loss / num_train_batches
+
+        # calcualte test loss
+        num_test_batches = 0
+        running_loss = 0.0
+        for i_batch, sample_batched in enumerate(test_dataloader):
+            images, labels = sample_batched
+            num_test_batches += 1
+
+            outputs = net(images.float())
+            loss = loss_fn(outputs, labels)
+            running_loss += loss.item()
+
+        epoch_test_loss = running_loss / num_test_batches
+        print('[%d]\ttrain_loss: %.3f\t test_loss: %.3f' %
+              (epoch + 1, epoch_train_loss, epoch_test_loss))
