@@ -1,0 +1,2 @@
+Linear SVM Test Accuracy: 0.298
+RBF SVM Test Accuracy: 0.446
