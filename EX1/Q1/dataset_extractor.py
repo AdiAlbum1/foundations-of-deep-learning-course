@@ -11,7 +11,7 @@ def unpickle(file):
         dict = pickle.load(fo, encoding='bytes')
     return dict
 
-def extract_dataset():
+def unpickle_and_merge_dataset():
     all_images = []
     all_labels = []
     for i in range(1, DATASET_BATCHES + 1):
@@ -39,12 +39,14 @@ def normalize_dataset(images):
     normalized_images = [image / 255.0 for image in images]
     return normalized_images
 
-if __name__ == "__main__":
-    # Load whole CIFAR-10 dataset
-    all_images, all_labels = extract_dataset()
+def load_dataset():
+    # Unpickle and merge whole CIFAR-10 dataset
+    all_images, all_labels = unpickle_and_merge_dataset()
 
     # Subsample 10% of CIFAR-10 dataset
     images, labels = subsample_dataset(all_images, all_labels)
 
     # Normalize images to [0,1] range by dividing by 255.0
     images = normalize_dataset(images)
+
+    return images, labels
