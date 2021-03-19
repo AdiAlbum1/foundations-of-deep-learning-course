@@ -1,2 +1,9 @@
+# Dataset folder too large, so we won't upload it
 dataset/*
 !dataset/.gitkeep 
+
+# Python Virtual Enviorment
+venv/
+
+# PyCharm files
+.idea/
