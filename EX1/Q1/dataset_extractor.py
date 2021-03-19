@@ -4,22 +4,31 @@ import random
 
 DATASET_BATCHES = 5
 DATASET_DIR = "dataset/cifar-10-batches-py/"
-DATASET_PREFIX = "data_batch_"
+TRAIN_DATASET_PREFIX = "data_batch_"
+TEST_DATASET = "test_batch"
 
 def unpickle(file):
     with open(file, 'rb') as fo:
         dict = pickle.load(fo, encoding='bytes')
     return dict
 
-def unpickle_and_merge_dataset():
+def unpickle_and_merge_train_dataset():
     all_images = []
     all_labels = []
     for i in range(1, DATASET_BATCHES + 1):
-        curr_dataset_batch = unpickle(DATASET_DIR + DATASET_PREFIX + str(i))
+        curr_dataset_batch = unpickle(DATASET_DIR + TRAIN_DATASET_PREFIX + str(i))
         all_images.extend(curr_dataset_batch[b'data'])
         all_labels.extend(curr_dataset_batch[b'labels'])
 
     return all_images, all_labels
+
+def unpickle_test_dataset():
+    test_dataset = unpickle(DATASET_DIR + TEST_DATASET)
+    test_images = test_dataset[b'data']
+    test_labels = test_dataset[b'labels']
+
+    return test_images, test_labels
+
 
 def subsample_dataset(images, labels):
     # Simultaneously shuffle images and labels
@@ -41,12 +50,17 @@ def normalize_dataset(images):
 
 def load_dataset():
     # Unpickle and merge whole CIFAR-10 dataset
-    all_images, all_labels = unpickle_and_merge_dataset()
+    all_train_images, all_train_labels = unpickle_and_merge_train_dataset()
+
+    # Unpickle test dataset
+    all_test_images, all_test_labels = unpickle_test_dataset()
 
     # Subsample 10% of CIFAR-10 dataset
-    images, labels = subsample_dataset(all_images, all_labels)
+    train_images, train_labels = subsample_dataset(all_train_images, all_train_labels)
+    test_images, test_labels = subsample_dataset(all_test_images, all_test_labels)
 
     # Normalize images to [0,1] range by dividing by 255.0
-    images = normalize_dataset(images)
+    train_images = normalize_dataset(train_images)
+    test_images = normalize_dataset(test_images)
 
-    return images, labels
+    return train_images, train_labels, test_images, test_labels
