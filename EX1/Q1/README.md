@@ -19,3 +19,6 @@ and normalize the inputs to span the range [0,1].
 linear and RBF kernels, report the train and test accuracies obtained.
 
 ## Extract Dataset
+
+1. [Download dataset](https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz)
+2. Untar dataset and place it in [dataset folder](./dataset)
