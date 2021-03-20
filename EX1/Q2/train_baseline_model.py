@@ -4,7 +4,7 @@ from baseline_model import Baseline_Network
 import torch
 import numpy as np
 
-from statistics import calc_dataset_acc, calc_dataset_loss
+from statistics.calc_statistics import calc_dataset_acc, calc_dataset_loss
 
 if __name__ == "__main__":
 
@@ -15,7 +15,7 @@ if __name__ == "__main__":
     learning_rate, momentum = 1e-4, 0.9
 
     # load dataset
-    train_dataloader, test_dataloader = load_dataset()
+    train_dataloader, test_dataloader = load_dataset(batch_size)
 
     # Define NN model
     net = Baseline_Network(D_in, H, D_out)

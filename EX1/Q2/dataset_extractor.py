@@ -1,6 +1,7 @@
 import numpy as np
 import pickle
 import random
+import torch
 
 DATASET_BATCHES = 5
 DATASET_DIR = "dataset/cifar-10-batches-py/"
@@ -48,7 +49,7 @@ def normalize_dataset(images):
     normalized_images = [image / 255.0 for image in images]
     return normalized_images
 
-def load_dataset():
+def load_dataset(batch_size):
     # Unpickle and merge whole CIFAR-10 dataset
     all_train_images, all_train_labels = unpickle_and_merge_train_dataset()
 
