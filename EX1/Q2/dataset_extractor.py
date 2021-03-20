@@ -71,6 +71,6 @@ def load_dataset(batch_size):
 
     tensor_test_x, tensor_test_y = torch.tensor(test_images), torch.tensor(test_labels)
     tensor_test = torch.utils.data.TensorDataset(tensor_test_x, tensor_test_y)
-    test_dataloader = torch.utils.data.DataLoader(tensor_test)
+    test_dataloader = torch.utils.data.DataLoader(tensor_test, batch_size=batch_size)
 
     return train_dataloader, test_dataloader
