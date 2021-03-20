@@ -15,15 +15,7 @@ if __name__ == "__main__":
     learning_rate, momentum = 1e-4, 0.9
 
     # load dataset
-    train_images, train_labels, test_images, test_labels = load_dataset()
-
-    tensor_train_x, tensor_train_y = torch.tensor(train_images), torch.tensor(train_labels)
-    tensor_train = torch.utils.data.TensorDataset(tensor_train_x, tensor_train_y)
-    train_dataloader = torch.utils.data.DataLoader(tensor_train, batch_size=batch_size, shuffle=True)
-
-    tensor_test_x, tensor_test_y = torch.tensor(test_images), torch.tensor(test_labels)
-    tensor_test = torch.utils.data.TensorDataset(tensor_test_x, tensor_test_y)
-    test_dataloader = torch.utils.data.DataLoader(tensor_test)
+    train_dataloader, test_dataloader = load_dataset()
 
     # Define NN model
     net = Baseline_Network(D_in, H, D_out)
