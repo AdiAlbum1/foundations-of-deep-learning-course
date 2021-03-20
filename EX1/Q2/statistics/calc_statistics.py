@@ -19,6 +19,7 @@ def calc_dataset_acc(dataset_loader, net):
 
 def calc_dataset_loss(dataset_loader, net, loss_fn):
     # calculate train loss
+    dataset_size = 0
     running_loss = 0.0
     for i_batch, sample_batched in enumerate(dataset_loader):
         images, labels = sample_batched
@@ -26,5 +27,7 @@ def calc_dataset_loss(dataset_loader, net, loss_fn):
         loss = loss_fn(outputs, labels)
         running_loss += loss.item()
 
-    dataset_loss = running_loss / len(dataset_loader)
+        dataset_size += len(labels)
+
+    dataset_loss = running_loss / dataset_size
     return dataset_loss
