@@ -2,6 +2,9 @@
 dataset/*
 !dataset/.gitkeep 
 
+# Results folder too large, so we won't upload it
+statistics/results/
+
 # Python Virtual Enviorment
 venv/
 
