@@ -27,7 +27,14 @@ class Conv_Network(nn.Module):
         hidden_activation_2 = self.max_pooling_2(hidden_activation_1)
         hidden_activation_3 = F.relu(self.conv_layer_3(hidden_activation_2))
         hidden_activation_4 = self.max_pooling_4(hidden_activation_3)
-        hidden_activation_5 = self.fc_5(hidden_activation_4)
+        hidden_activation_5 = self.fc_5(hidden_activation_4.view(-1, self.num_flat_features(hidden_activation_4)))
         # TODO - NO ACTIVATION? Check forum for answer
         output = self.fc_6(hidden_activation_5)
         return output
+
+    def num_flat_features(self, x):
+        size = x.size()[1:]  # all dimensions except the batch dimension
+        num_features = 1
+        for s in size:
+            num_features *= s
+        return num_features
