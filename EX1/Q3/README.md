@@ -19,14 +19,14 @@ you find in item (1) below. For example, after experimenting with Xavier initial
 do not use it in the following items
 1. Baseline - Implement a CNN that receives as input 32 × 32 RGB images with the following
 architecture:
-• 3 × 3 convolution layer with 64 filters (use stride of 1).
-• ReLU activation.
-• 2 × 2 max-pooling layer (use stride of 2).
-• 3 × 3 convolution layer with 16 filters (use stride of 1).
-• ReLU activation.
-• 2 × 2 max-pooling layer (use stride of 2).
-• Fully connected layer with dimension 784.
-• Output layer with dimension 10.
+* 3 × 3 convolution layer with 64 filters (use stride of 1).
+* ReLU activation.
+* 2 × 2 max-pooling layer (use stride of 2).
+* 3 × 3 convolution layer with 16 filters (use stride of 1).
+* ReLU activation.
+* 2 × 2 max-pooling layer (use stride of 2).
+* Fully connected layer with dimension 784.
+* Output layer with dimension 10.
 Use the cross-entropy loss, SGD optimizer with momentum and a constant learning rate,
 and initialize the parameters randomly by sampling from a zero-mean Gaussian distribution.
 Perform a grid search over the momentum coefficient, learning rate, and initialization standard
