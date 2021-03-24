@@ -71,6 +71,10 @@ pip install -r requirments.txt
 ```sh
 python train_conv_model.py
 ```
+2. For visualizing loss and accuracy, run:
+```sh
+python visualize_statistics.py
+```
 
 ## Results
 ```
