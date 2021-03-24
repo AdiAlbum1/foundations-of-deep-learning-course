@@ -9,7 +9,7 @@ from statistics.calc_statistics import calc_dataset_acc, calc_dataset_loss
 if __name__ == "__main__":
     # D_in is input dimension; H is hidden dimension; D_out is output dimension.
     epochs = 30
-    batch_size, D_in, H, D_out = 64, 3072, 256, 10
+    batch_size, D_in, H, D_out = 32, 3072, 256, 10
 
     # load dataset
     train_dataloader, test_dataloader = load_dataset(batch_size)
@@ -60,7 +60,6 @@ if __name__ == "__main__":
                     epoch_train_acc = calc_dataset_acc(train_dataloader, net)
                     epoch_test_acc = calc_dataset_acc(test_dataloader, net)
 
-                    # if epoch % 10 == 0:
                     print('[%d_%d_%d]:\t[epoch %d]\ttrain_loss: %.3f\t test_loss: %.3f\ttrain_acc: %.2f%%\ttest_acc: %.2f%%' %
                           (i, j, k, epoch + 1, epoch_train_loss, epoch_test_loss, 100*epoch_train_acc, 100*epoch_test_acc))
 
