@@ -68,4 +68,4 @@ if __name__ == "__main__":
                     test_acc_per_epoch.append(epoch_test_acc)
 
                     np.save("statistics/results/baseline/results/curr_stats_%d_%d_%d" % (i, j, k), np.array([train_loss_per_epoch, test_loss_per_epoch, train_acc_per_epoch, test_acc_per_epoch]))
-                print()
+                    print()
