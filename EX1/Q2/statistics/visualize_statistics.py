@@ -14,7 +14,6 @@ def visualize_loss(train_loss, test_loss, i, j, k, std, learning_rate, momentum)
     plt.legend(["train_loss", "test_loss"])
 
     fig.savefig("statistics/results/baseline/loss/loss_%d_%d_%d.png" %(i, j, k))
-    # plt.show()
 
 def visualize_acc(train_acc, test_acc, i, j, k, std, learning_rate, momentum):
     epochs = len(train_acc)
