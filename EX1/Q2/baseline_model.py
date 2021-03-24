@@ -9,9 +9,11 @@ class Baseline_Network(nn.Module):
 
     def random_init(self, std=1.0):
         nn.init.normal_(self.input_layer.weight, mean=0.0, std=std)
-        nn.init.normal_(self.input_layer.bias, mean=0.0, std=std)
+        nn.init.zeros_(self.input_layer.bias)
+        # nn.init.normal_(self.input_layer.bias, mean=0.0, std=std)
         nn.init.normal_(self.output_layer.weight, mean=0.0, std=std)
-        nn.init.normal_(self.output_layer.bias, mean=0.0, std=std)
+        nn.init.zeros_(self.output_layer.bias)
+        # nn.init.normal_(self.output_layer.bias, mean=0.0, std=std)
 
     def forward(self, x):
         hidden_activation = F.relu(self.input_layer(x))

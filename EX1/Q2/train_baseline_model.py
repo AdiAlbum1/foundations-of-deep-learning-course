@@ -8,9 +8,8 @@ from statistics.calc_statistics import calc_dataset_acc, calc_dataset_loss
 
 if __name__ == "__main__":
     # D_in is input dimension; H is hidden dimension; D_out is output dimension.
-    epochs = 300
+    epochs = 30
     batch_size, D_in, H, D_out = 64, 3072, 256, 10
-    learning_rate, momentum = 1e-4, 0.9
 
     # load dataset
     train_dataloader, test_dataloader = load_dataset(batch_size)
@@ -22,9 +21,9 @@ if __name__ == "__main__":
     loss_fn = torch.nn.CrossEntropyLoss()
 
     # perform grid search
-    stds = [0.7, 1.0, 1.3]
-    learning_rates = [1e-5, 1e-4, 1e-3, 1e-2, 1e-1]
-    momentums = [0.5, 0.9, 0.98]
+    stds = [0.1, 0.2, 0.3]
+    learning_rates = [1e-3, 1e-2, 1e-1]
+    momentums = [0, 0.5, 0.9]
 
     for i, std in enumerate(stds):
         for j, learning_rate in enumerate(learning_rates):
@@ -62,13 +61,13 @@ if __name__ == "__main__":
                     epoch_test_acc = calc_dataset_acc(test_dataloader, net)
 
                     # if epoch % 10 == 0:
-                    print('[%d_%d_%d]:\t[epoch %d]\ttrain_loss: %.3f\t test_loss: %.3f\ttrain_acc: %.3f\ttest_acc: %.3f' %
-                          (i, j, k, epoch + 1, epoch_train_loss, epoch_test_loss, epoch_train_acc, epoch_test_acc))
+                    print('[%d_%d_%d]:\t[epoch %d]\ttrain_loss: %.3f\t test_loss: %.3f\ttrain_acc: %.2f%%\ttest_acc: %.2f%%' %
+                          (i, j, k, epoch + 1, epoch_train_loss, epoch_test_loss, 100*epoch_train_acc, 100*epoch_test_acc))
 
                     train_loss_per_epoch.append(epoch_train_loss)
                     test_loss_per_epoch.append(epoch_test_loss)
                     train_acc_per_epoch.append(epoch_train_acc)
                     test_acc_per_epoch.append(epoch_test_acc)
 
-                np.save("statistics/curr_stats_%d_%d_%d" % (i, j, k), np.array([train_loss_per_epoch, test_loss_per_epoch, train_acc_per_epoch, test_acc_per_epoch]))
+                np.save("statistics/results/baseline_2/results/curr_stats_%d_%d_%d" % (i, j, k), np.array([train_loss_per_epoch, test_loss_per_epoch, train_acc_per_epoch, test_acc_per_epoch]))
             print()
