@@ -21,7 +21,7 @@ if __name__ == "__main__":
     loss_fn = torch.nn.CrossEntropyLoss()
 
     # perform grid search
-    stds = [0.1, 0.2, 0.3]
+    stds = [0.2, 0.4, 0.6]
     learning_rates = [1e-3, 1e-2, 1e-1]
     momentums = [0, 0.5, 0.9]
 
