@@ -8,7 +8,7 @@ from statistics.calc_statistics import calc_dataset_acc, calc_dataset_loss
 
 if __name__ == "__main__":
     # D_in is input dimension; H is hidden dimension; D_out is output dimension.
-    epochs = 250
+    epochs = 200
     batch_size, D_in, H, D_out = 32, 3072, 256, 10
 
     # load dataset

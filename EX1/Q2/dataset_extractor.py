@@ -46,7 +46,7 @@ def subsample_dataset(images, labels):
     return subsampled_images, subsampled_labels
 
 def normalize_dataset(images):
-    images = images / 255.0
+    images = np.array(images) / 255.0
     return images
 
 def load_dataset(batch_size):
