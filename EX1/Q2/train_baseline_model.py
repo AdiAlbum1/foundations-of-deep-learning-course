@@ -8,7 +8,7 @@ from statistics.calc_statistics import calc_dataset_acc, calc_dataset_loss
 
 if __name__ == "__main__":
     # D_in is input dimension; H is hidden dimension; D_out is output dimension.
-    epochs = 30
+    epochs = 250
     batch_size, D_in, H, D_out = 32, 3072, 256, 10
 
     # load dataset
@@ -21,7 +21,7 @@ if __name__ == "__main__":
     loss_fn = torch.nn.CrossEntropyLoss()
 
     # perform grid search
-    stds = [0.2, 0.4, 0.6]
+    stds = [0.05, 0.1, 0.3]
     learning_rates = [1e-3, 1e-2, 1e-1]
     momentums = [0, 0.5, 0.9]
 
@@ -68,5 +68,5 @@ if __name__ == "__main__":
                     train_acc_per_epoch.append(epoch_train_acc)
                     test_acc_per_epoch.append(epoch_test_acc)
 
-                np.save("statistics/results/baseline_2/results/curr_stats_%d_%d_%d" % (i, j, k), np.array([train_loss_per_epoch, test_loss_per_epoch, train_acc_per_epoch, test_acc_per_epoch]))
+                np.save("statistics/results/baseline/results/curr_stats_%d_%d_%d" % (i, j, k), np.array([train_loss_per_epoch, test_loss_per_epoch, train_acc_per_epoch, test_acc_per_epoch]))
             print()

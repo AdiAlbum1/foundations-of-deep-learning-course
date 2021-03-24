@@ -13,7 +13,7 @@ def visualize_loss(train_loss, test_loss, i, j, k, std, learning_rate, momentum)
     ax.grid()
     plt.legend(["train_loss", "test_loss"])
 
-    fig.savefig("statistics/results/baseline_2/loss/loss_%d_%d_%d.png" %(i, j, k))
+    fig.savefig("statistics/results/baseline/loss/loss_%d_%d_%d.png" %(i, j, k))
     # plt.show()
 
 def visualize_acc(train_acc, test_acc, i, j, k, std, learning_rate, momentum):
@@ -28,8 +28,7 @@ def visualize_acc(train_acc, test_acc, i, j, k, std, learning_rate, momentum):
     ax.grid()
     plt.legend(["train_acc", "test_acc"])
 
-    fig.savefig("statistics/results/baseline_2/acc/acc_%d_%d_%d.png" %(i, j, k))
-    # plt.show()
+    fig.savefig("statistics/results/baseline/acc/acc_%d_%d_%d.png" %(i, j, k))
 
 if __name__ == "__main__":
     stds = [0.1, 0.2, 0.3]
@@ -39,7 +38,7 @@ if __name__ == "__main__":
     for i, std in enumerate(stds):
         for j, learning_rate in enumerate(learning_rates):
             for k, momentum in enumerate(momentums):
-                train_stats = np.load("statistics/results/baseline_2/results/curr_stats_%d_%d_%d.npy" % (i, j, k))
+                train_stats = np.load("statistics/results/baseline/results/curr_stats_%d_%d_%d.npy" % (i, j, k))
 
                 train_loss_per_epoch, test_loss_per_epoch, train_acc_per_epoch, test_acc_per_epoch = train_stats
                 train_loss_per_epoch = train_loss_per_epoch[2:]
