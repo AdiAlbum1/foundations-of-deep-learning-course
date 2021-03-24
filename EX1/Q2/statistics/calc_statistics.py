@@ -1,7 +1,6 @@
 import torch
 
 def calc_dataset_acc(dataset_loader, net):
-    # calculate train loss
     dataset_size = 0
     num_of_success_predictions = 0
     for i_batch, sample_batched in enumerate(dataset_loader):

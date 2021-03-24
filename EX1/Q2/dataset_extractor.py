@@ -46,8 +46,8 @@ def subsample_dataset(images, labels):
     return subsampled_images, subsampled_labels
 
 def normalize_dataset(images):
-    normalized_images = [image / 255.0 for image in images]
-    return normalized_images
+    images = images / 255.0
+    return images
 
 def load_dataset(batch_size):
     # Unpickle and merge whole CIFAR-10 dataset
