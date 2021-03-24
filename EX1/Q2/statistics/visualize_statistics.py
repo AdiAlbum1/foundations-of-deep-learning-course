@@ -30,7 +30,7 @@ def visualize_acc(train_acc, test_acc, i, j, k, std, learning_rate, momentum):
     fig.savefig("statistics/results/baseline/acc/acc_%d_%d_%d.png" %(i, j, k))
 
 if __name__ == "__main__":
-    stds = [0.1, 0.2, 0.3]
+    stds = [0.05, 0.1, 0.3]
     learning_rates = [1e-3, 1e-2, 1e-1]
     momentums = [0, 0.5, 0.9]
 
