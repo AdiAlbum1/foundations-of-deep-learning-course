@@ -7,7 +7,7 @@ import numpy as np
 from statistics.calc_statistics import calc_dataset_acc, calc_dataset_loss
 
 if __name__ == "__main__":
-    epochs = 250
+    epochs = 200
     batch_size = 32
 
     # load dataset
@@ -67,5 +67,5 @@ if __name__ == "__main__":
                     train_acc_per_epoch.append(epoch_train_acc)
                     test_acc_per_epoch.append(epoch_test_acc)
 
-                    np.save("statistics/results/baseline/results/curr_stats_%d_%d_%d" % (i, j, k), np.array([train_loss_per_epoch, test_loss_per_epoch, train_acc_per_epoch, test_acc_per_epoch]))
-                    print()
+                np.save("statistics/results/baseline/results/curr_stats_%d_%d_%d" % (i, j, k), np.array([train_loss_per_epoch, test_loss_per_epoch, train_acc_per_epoch, test_acc_per_epoch]))
+                print()
