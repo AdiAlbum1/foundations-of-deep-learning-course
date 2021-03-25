@@ -7,7 +7,7 @@ import numpy as np
 from statistics.calc_statistics import calc_dataset_acc, calc_dataset_loss
 
 if __name__ == "__main__":
-    epochs = 200
+    epochs = 105
     batch_size = 32
 
     # load dataset
