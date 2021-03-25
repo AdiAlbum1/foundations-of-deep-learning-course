@@ -2,9 +2,10 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 vis_num_epochs = 100
+epoch_start = 3
 
 def visualize_loss(train_loss, test_loss, i, j, k, std, learning_rate, momentum):
-    x_axis = list(range(3, vis_num_epochs+3))
+    x_axis = list(range(epoch_start, vis_num_epochs+epoch_start))
 
     fig, ax = plt.subplots()
     ax.plot(x_axis, train_loss[:vis_num_epochs])
@@ -18,7 +19,7 @@ def visualize_loss(train_loss, test_loss, i, j, k, std, learning_rate, momentum)
     plt.close(fig)
 
 def visualize_acc(train_acc, test_acc, i, j, k, std, learning_rate, momentum):
-    x_axis = list(range(3, vis_num_epochs+3))
+    x_axis = list(range(epoch_start, vis_num_epochs+epoch_start))
 
     fig, ax = plt.subplots()
     ax.plot(x_axis, train_acc[:vis_num_epochs])
@@ -42,10 +43,10 @@ if __name__ == "__main__":
                 train_stats = np.load("statistics/results/baseline/results/curr_stats_%d_%d_%d.npy" % (i, j, k))
 
                 train_loss_per_epoch, test_loss_per_epoch, train_acc_per_epoch, test_acc_per_epoch = train_stats
-                train_loss_per_epoch = train_loss_per_epoch[2:]
-                test_loss_per_epoch = test_loss_per_epoch[2:]
-                train_acc_per_epoch = train_acc_per_epoch[2:]
-                test_acc_per_epoch = test_acc_per_epoch[2:]
+                train_loss_per_epoch = train_loss_per_epoch[epoch_start-1:]
+                test_loss_per_epoch = test_loss_per_epoch[epoch_start-1:]
+                train_acc_per_epoch = train_acc_per_epoch[epoch_start-1:]
+                test_acc_per_epoch = test_acc_per_epoch[epoch_start-1:]
 
                 visualize_loss(train_loss_per_epoch, test_loss_per_epoch, i, j, k, std, learning_rate, momentum)
                 visualize_acc(train_acc_per_epoch, test_acc_per_epoch, i, j, k, std, learning_rate, momentum)
