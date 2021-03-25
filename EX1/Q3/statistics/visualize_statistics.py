@@ -15,6 +15,7 @@ def visualize_loss(train_loss, test_loss, i, j, k, std, learning_rate, momentum)
     plt.legend(["train_loss", "test_loss"])
 
     fig.savefig("statistics/results/baseline/loss/loss_%d_%d_%d.png" %(i, j, k))
+    plt.close(fig)
 
 def visualize_acc(train_acc, test_acc, i, j, k, std, learning_rate, momentum):
     x_axis = list(range(3, vis_num_epochs+3))
@@ -28,6 +29,7 @@ def visualize_acc(train_acc, test_acc, i, j, k, std, learning_rate, momentum):
     plt.legend(["train_acc", "test_acc"])
 
     fig.savefig("statistics/results/baseline/acc/acc_%d_%d_%d.png" %(i, j, k))
+    plt.close(fig)
 
 if __name__ == "__main__":
     stds = [0.05, 0.1, 0.2]
