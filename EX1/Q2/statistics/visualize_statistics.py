@@ -1,13 +1,14 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
+vis_num_epochs = 100
+
 def visualize_loss(train_loss, test_loss, i, j, k, std, learning_rate, momentum):
-    epochs = len(train_loss)
-    x_axis = list(range(3, epochs+3))
+    x_axis = list(range(3, vis_num_epochs+3))
 
     fig, ax = plt.subplots()
-    ax.plot(x_axis, train_loss)
-    ax.plot(x_axis, test_loss)
+    ax.plot(x_axis, train_loss[:vis_num_epochs])
+    ax.plot(x_axis, test_loss[:vis_num_epochs])
     ax.set(xlabel='epochs', ylabel='loss',
            title="loss\nstd=%.1f, learning_rate=%.3f, momentum=%.1f" %(std, learning_rate, momentum))
     ax.grid()
@@ -16,12 +17,11 @@ def visualize_loss(train_loss, test_loss, i, j, k, std, learning_rate, momentum)
     fig.savefig("statistics/results/baseline/loss/loss_%d_%d_%d.png" %(i, j, k))
 
 def visualize_acc(train_acc, test_acc, i, j, k, std, learning_rate, momentum):
-    epochs = len(train_acc)
-    x_axis = list(range(3, epochs+3))
+    x_axis = list(range(3, vis_num_epochs+3))
 
     fig, ax = plt.subplots()
-    ax.plot(x_axis, train_acc)
-    ax.plot(x_axis, test_acc)
+    ax.plot(x_axis, train_acc[:vis_num_epochs])
+    ax.plot(x_axis, test_acc[:vis_num_epochs])
     ax.set(xlabel='epochs', ylabel='acc',
            title="accuracy\nstd=%.1f, learning_rate=%.3f, momentum=%.1f" %(std, learning_rate, momentum))
     ax.grid()
