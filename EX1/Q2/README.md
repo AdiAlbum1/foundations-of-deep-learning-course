@@ -74,7 +74,7 @@ python statistics/visualize_optimizer_statistics.py
 ```
 
 ## Results
-For hyperparameter selection we used an exhaustive grid search over
+1. For hyperparameter selection we used an exhaustive grid search over
 ```python
 stds = [0.05, 0.1, 0.3]
 learning_rates = [1e-3, 1e-2, 1e-1]
@@ -93,3 +93,9 @@ This selection gave the following result:
 <br/>
 The model converged very quickly to good results, with overfitting.
 We now can use this as a basis for tuning our training procedure.
+
+2. For optimizer comparison we compared SGD with above hyperparameters and Adam optimizer.
+This gave us the following results
+<br/>
+<img src="statistics/results/optimization/loss.png" width="400" height="400">
+<img src="statistics/results/optimization/acc.png" width="400" height="400">
