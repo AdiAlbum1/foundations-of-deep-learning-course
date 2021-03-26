@@ -51,9 +51,9 @@ pip install -r requirments.txt
 
 1. [Download dataset](https://www.cs.toronto.edu/~kriz/cifar-10-python.tar.gz)
 2. Untar dataset and place it in [dataset folder](./dataset) with following structure:
-```
-./dataset/cifar-10-batches-py/...
-```
+    ```
+    ./dataset/cifar-10-batches-py/...
+    ```
 
 ## Usage
 1. For training baseline model:
