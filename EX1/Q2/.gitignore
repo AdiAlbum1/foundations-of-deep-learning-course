@@ -11,6 +11,10 @@ statistics/results/optimization/*
 !statistics/results/optimization/acc.png
 !statistics/results/optimization/loss.png
 
+statistics/results/initialization/*
+!statistics/results/initialization/acc.png
+!statistics/results/initialization/loss.png
+
 # Python Virtual Enviorment
 venv/
 
