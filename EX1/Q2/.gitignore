@@ -3,7 +3,7 @@ dataset/*
 !dataset/.gitkeep 
 
 # Results folder too large, so we won't upload it
-statistics/results/
+statistics/results/baseline/
 
 # Python Virtual Enviorment
 venv/
