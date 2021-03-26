@@ -70,7 +70,7 @@ python compare_optimization.py
 ```
 and visualizing loss and accuracy, run:
 ```sh
-python statistics/visualize_optimizer_statistics.py.py
+python statistics/visualize_optimizer_statistics.py
 ```
 
 ## Results
