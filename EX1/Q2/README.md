@@ -102,3 +102,11 @@ pip install -r requirments.txt
     <img src="statistics/results/optimization/loss.png" width="400" height="400">
     <img src="statistics/results/optimization/acc.png" width="400" height="400">
     <br/>
+
+3. Initialization Technique Comparison
+    For initialization technique comparison we compared random normal initialization with Xavier initialization.
+    This gave us the following results
+    <br/>
+    <img src="statistics/results/initialization/loss.png" width="400" height="400">
+    <img src="statistics/results/initialization/acc.png" width="400" height="400">
+    <br/>
