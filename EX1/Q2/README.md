@@ -60,9 +60,17 @@ pip install -r requirments.txt
 ```sh
 python train_baseline_model.py
 ```
-2. For visualizing loss and accuracy, run:
+and visualizing loss and accuracy, run:
 ```sh
-python visualize_baseline_statistics.py
+python statistics/visualize_baseline_statistics.py
+```
+2. For comparing optimization techniques:
+```sh
+python compare_optimization.py
+```
+and visualizing loss and accuracy, run:
+```sh
+python statistics/visualize_optimizer_statistics.py.py
 ```
 
 ## Results
