@@ -74,29 +74,31 @@ pip install -r requirments.txt
     ```
 
 ## Results
-1. For hyperparameter selection we used an exhaustive grid search over
-```python
-stds = [0.05, 0.1, 0.3]
-learning_rates = [1e-3, 1e-2, 1e-1]
-momentums = [0, 0.5, 0.9]
-```
-We ran the search for 100 epochs, and selected
-```python
-std = 0.1
-learning_rate = 1e-3
-momentum = 0.9
-```
-This selection gave the following result:
-<br/>
-<img src="statistics/results/baseline/hyperparameters_loss.png" width="400" height="400">
-<img src="statistics/results/baseline/hyperparameters_acc.png" width="400" height="400">
-<br/>
-The model converged very quickly to good results, with overfitting.
-We now can use this as a basis for tuning our training procedure.
+1. Hyperparameter Grid Search
+	For hyperparameter selection we used an exhaustive grid search over
+    ```python
+    stds = [0.05, 0.1, 0.3]
+    learning_rates = [1e-3, 1e-2, 1e-1]
+    momentums = [0, 0.5, 0.9]
+    ```
+    We ran the search for 100 epochs, and selected
+    ```python
+    std = 0.1
+    learning_rate = 1e-3
+    momentum = 0.9
+    ```
+    This selection gave the following result:
+    <br/>
+    <img src="statistics/results/baseline/hyperparameters_loss.png" width="400" height="400">
+    <img src="statistics/results/baseline/hyperparameters_acc.png" width="400" height="400">
+    <br/>
+    The model converged very quickly to good results, with overfitting.
+    We now can use this as a basis for tuning our training procedure.
 
-2. For optimizer comparison we compared SGD with above hyperparameters and Adam optimizer.
-This gave us the following results
-<br/>
-<img src="statistics/results/optimization/loss.png" width="400" height="400">
-<img src="statistics/results/optimization/acc.png" width="400" height="400">
-<br/>
+2. Optimizer Comparison
+    For optimizer comparison we compared SGD with above hyperparameters and Adam optimizer.
+    This gave us the following results
+    <br/>
+    <img src="statistics/results/optimization/loss.png" width="400" height="400">
+    <img src="statistics/results/optimization/acc.png" width="400" height="400">
+    <br/>
