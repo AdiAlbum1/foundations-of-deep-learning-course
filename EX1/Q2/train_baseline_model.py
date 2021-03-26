@@ -29,7 +29,7 @@ if __name__ == "__main__":
         for j, learning_rate in enumerate(learning_rates):
             for k, momentum in enumerate(momentums):
                 # random initialize net
-                net.random_init(std=std)
+                net.normal_random_init(std=std)
 
                 # Define Optimizer
                 optimizer = torch.optim.SGD(net.parameters(), lr=learning_rate, momentum=momentum)
