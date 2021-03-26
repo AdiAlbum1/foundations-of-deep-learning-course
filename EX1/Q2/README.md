@@ -99,3 +99,4 @@ This gave us the following results
 <br/>
 <img src="statistics/results/optimization/loss.png" width="400" height="400">
 <img src="statistics/results/optimization/acc.png" width="400" height="400">
+<br/>
