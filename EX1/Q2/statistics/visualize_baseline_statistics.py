@@ -10,7 +10,7 @@ def visualize_loss(train_loss, test_loss, i, j, k, std, learning_rate, momentum)
     ax.plot(x_axis, train_loss[:vis_num_epochs])
     ax.plot(x_axis, test_loss[:vis_num_epochs])
     ax.set(xlabel='epochs', ylabel='loss',
-           title="loss\nstd=%.2f, learning_rate=%.3f, momentum=%.1f" %(std, learning_rate, momentum))
+           title="loss\nstd=%.1f, learning_rate=%.3f, momentum=%.1f" %(std, learning_rate, momentum))
     ax.grid()
     plt.legend(["train_loss", "test_loss"])
 
@@ -24,7 +24,7 @@ def visualize_acc(train_acc, test_acc, i, j, k, std, learning_rate, momentum):
     ax.plot(x_axis, train_acc[:vis_num_epochs])
     ax.plot(x_axis, test_acc[:vis_num_epochs])
     ax.set(xlabel='epochs', ylabel='acc',
-           title="accuracy\nstd=%.2f, learning_rate=%.3f, momentum=%.1f" %(std, learning_rate, momentum))
+           title="accuracy\nstd=%.1f, learning_rate=%.3f, momentum=%.1f" %(std, learning_rate, momentum))
     ax.grid()
     plt.legend(["train_acc", "test_acc"])
 

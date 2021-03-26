@@ -62,7 +62,7 @@ python train_baseline_model.py
 ```
 2. For visualizing loss and accuracy, run:
 ```sh
-python visualize_statistics.py
+python visualize_baseline_statistics.py
 ```
 
 ## Results
