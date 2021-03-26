@@ -97,6 +97,6 @@ We now can use this as a basis for tuning our training procedure.
 2. For optimizer comparison we compared SGD with above hyperparameters and Adam optimizer.
 This gave us the following results
 <br/>
-<img src="statistics/results/optimization/loss.png" width="350" height="350">
-<img src="statistics/results/optimization/acc.png" width="350" height="350">
+<img src="statistics/results/optimization/loss.png" width="400" height="400">
+<img src="statistics/results/optimization/acc.png" width="400" height="400">
 <br/>
