@@ -79,6 +79,5 @@ learning_rate = 1e-3
 momentum = 0.9
 ```
 This selection gave the following result:<br/>
-<img src="statistics/results/hyperparameters_loss.png" width="200" height="200">
-<br/>
-![hyperparamaters acc](statistics/results/hyperparameters_acc.png)
+<img src="statistics/results/hyperparameters_loss.png" width="400" height="400">
+<img src="statistics/results/hyperparameters_acc.png" width="400" height="400">
