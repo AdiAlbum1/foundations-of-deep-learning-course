@@ -57,21 +57,21 @@ pip install -r requirments.txt
 
 ## Usage
 1. For training baseline model:
-```sh
-python train_baseline_model.py
-```
-and visualizing loss and accuracy, run:
-```sh
-python statistics/visualize_baseline_statistics.py
-```
+  ```sh
+  python train_baseline_model.py
+  ```
+  and visualizing loss and accuracy, run:
+  ```sh
+  python statistics/visualize_baseline_statistics.py
+  ```
 2. For comparing optimization techniques:
-```sh
-python compare_optimization.py
-```
-and visualizing loss and accuracy, run:
-```sh
-python statistics/visualize_optimizer_statistics.py
-```
+  ```sh
+  python compare_optimization.py
+  ```
+  and visualizing loss and accuracy, run:
+  ```sh
+  python statistics/visualize_optimizer_statistics.py
+  ```
 
 ## Results
 1. For hyperparameter selection we used an exhaustive grid search over
