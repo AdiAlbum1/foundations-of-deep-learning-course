@@ -4,6 +4,7 @@ dataset/*
 
 # Results folder too large, so we won't upload it
 statistics/results/baseline/
+statistics/results/optimization/
 
 # Python Virtual Enviorment
 venv/
