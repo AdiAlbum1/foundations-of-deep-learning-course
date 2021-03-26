@@ -10,7 +10,7 @@ if __name__ == "__main__":
     # D_in is input dimension; H is hidden dimension; D_out is output dimension.
     epochs = 150
     batch_size, D_in, H, D_out = 32, 3072, 256, 10
-    # selected SGD optimization parameters
+    # selected optimization parameters
     std, learning_rate, momentum = 0.1, 1e-3, 0.9
 
     # load dataset
