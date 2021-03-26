@@ -95,7 +95,7 @@ pip install -r requirments.txt
     learning_rate = 1e-3
     momentum = 0.9
     ```
-    This selection gave the following result:
+    This gave us the following results:
     <br/>
     <img src="statistics/results/baseline/hyperparameters_loss.png" width="400" height="400">
     <img src="statistics/results/baseline/hyperparameters_acc.png" width="400" height="400">
@@ -105,7 +105,7 @@ pip install -r requirments.txt
 
 2. Optimizer Comparison
     For optimizer comparison we compared SGD with above hyperparameters and Adam optimizer.
-    This gave us the following results
+    This gave us the following results:
     <br/>
     <img src="statistics/results/optimization/loss.png" width="400" height="400">
     <img src="statistics/results/optimization/acc.png" width="400" height="400">
@@ -113,7 +113,7 @@ pip install -r requirments.txt
 
 3. Initialization Technique Comparison
     For initialization technique comparison we compared random normal initialization with Xavier initialization.
-    This gave us the following results
+    This gave us the following results:
     <br/>
     <img src="statistics/results/initialization/loss.png" width="400" height="400">
     <img src="statistics/results/initialization/acc.png" width="400" height="400">
