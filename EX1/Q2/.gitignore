@@ -4,6 +4,9 @@ dataset/*
 
 # Results folder too large, so we won't upload it
 statistics/results/baseline/
+!statistics/results/baseline/hyperparameters_acc.png
+!statistics/results/baseline/hyperparameters_loss.png
+
 statistics/results/optimization/
 
 # Python Virtual Enviorment

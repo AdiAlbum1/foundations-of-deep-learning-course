@@ -88,8 +88,8 @@ momentum = 0.9
 ```
 This selection gave the following result:
 <br/>
-<img src="statistics/results/hyperparameters_loss.png" width="400" height="400">
-<img src="statistics/results/hyperparameters_acc.png" width="400" height="400">
+<img src="statistics/results/baseline/hyperparameters_loss.png" width="400" height="400">
+<img src="statistics/results/baseline/hyperparameters_acc.png" width="400" height="400">
 <br/>
 The model converged very quickly to good results, with overfitting.
 We now can use this as a basis for tuning our training procedure.
