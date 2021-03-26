@@ -7,13 +7,17 @@ class Baseline_Network(nn.Module):
         self.input_layer = nn.Linear(D_in, H)
         self.output_layer = nn.Linear(H, D_out)
 
-    def random_init(self, std=1.0):
+    def normal_random_init(self, std=1.0):
         nn.init.normal_(self.input_layer.weight, mean=0.0, std=std)
         nn.init.zeros_(self.input_layer.bias)
-        # nn.init.normal_(self.input_layer.bias, mean=0.0, std=std)
         nn.init.normal_(self.output_layer.weight, mean=0.0, std=std)
         nn.init.zeros_(self.output_layer.bias)
-        # nn.init.normal_(self.output_layer.bias, mean=0.0, std=std)
+
+    def xavier_init(self):
+        nn.init.xavier_uniform_(self.input_layer.weight)
+        nn.init.zeros_(self.input_layer.bias)
+        nn.init.xavier_uniform_(self.output_layer.weight)
+        nn.init.zeros_(self.output_layer.bias)
 
     def forward(self, x):
         hidden_activation = F.relu(self.input_layer(x))

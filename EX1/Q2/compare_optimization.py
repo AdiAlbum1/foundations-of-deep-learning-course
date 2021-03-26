@@ -24,7 +24,7 @@ if __name__ == "__main__":
 
     # --- train SGD model ---
     # random initialize net
-    net.random_init(std=std)
+    net.normal_random_init(std=std)
 
     # Define Optimizer
     optimizer = torch.optim.SGD(net.parameters(), lr=learning_rate, momentum=momentum)
@@ -68,7 +68,7 @@ if __name__ == "__main__":
 
     # --- train Adam model ---
     # random initialize net
-    net.random_init(std=std)
+    net.normal_random_init(std=std)
 
     # Define Optimizer
     optimizer = torch.optim.Adam(net.parameters(), lr=learning_rate)
