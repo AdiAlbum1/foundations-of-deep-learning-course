@@ -22,7 +22,7 @@ if __name__ == "__main__":
     # Define Loss function
     loss_fn = torch.nn.CrossEntropyLoss()
 
-    # --- train SGD model ---
+    # --- train model with normal init ---
     # normal random initialize net
     net.normal_random_init(std=std)
 
@@ -66,7 +66,7 @@ if __name__ == "__main__":
     np.save("statistics/results/initialization/results/normal_init_stats", np.array([train_loss_per_epoch, test_loss_per_epoch, train_acc_per_epoch, test_acc_per_epoch]))
     print()
 
-    # --- train Adam model ---
+    # --- train model with Xavier init ---
     # normal random initialize net
     net.xavier_init()
 
