@@ -56,7 +56,7 @@ pip install -r requirments.txt
     ```
 
 ## Usage
-1. For training baseline model:
+1. Training baseline model:
     ```sh
     python train_baseline_model.py
     ```
@@ -64,7 +64,7 @@ pip install -r requirments.txt
     ```sh
     python statistics/visualize_baseline_statistics.py
     ```
-2. For comparing optimization techniques:
+2. Comparing optimization techniques:
     ```sh
     python compare_optimization.py
     ```
