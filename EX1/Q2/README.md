@@ -72,6 +72,14 @@ pip install -r requirments.txt
     ```sh
     python statistics/visualize_optimizer_statistics.py
     ```
+3. Comparing initialization techniques:
+    ```sh
+    python compare_initialization.py
+    ```
+    and visualizing loss and accuracy, run:
+    ```sh
+    python statistics/visualize_initialization_statistics.py
+    ```
 
 ## Results
 1. Hyperparameter Grid Search
