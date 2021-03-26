@@ -66,6 +66,18 @@ python visualize_statistics.py
 ```
 
 ## Results
+For hyperparameter selection we used an exhaustive grid search over
+```python
+stds = [0.05, 0.1, 0.3]
+learning_rates = [1e-3, 1e-2, 1e-1]
+momentums = [0, 0.5, 0.9]
 ```
-TBD
+We ran the search for 100 epochs, and selected
+```python
+std = 0.1
+learning_rate = 1e-3
+momentum = 0.9
 ```
+This selection gave the following result:
+![hyperparameters loss](statistics/results/hyperparameters_loss.png)
+![hyperparamaters acc](statistics/results/hyperparameters_acc.png)
