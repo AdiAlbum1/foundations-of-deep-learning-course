@@ -33,10 +33,7 @@ if __name__ == "__main__":
 
     # Train Network
     for epoch in range(epochs):
-
-        running_loss = 0.0
-
-        for i_batch, sample_batched in enumerate(train_dataloader):
+        for sample_batched in train_dataloader:
             images, labels = sample_batched
 
             # zero the parameter gradients
