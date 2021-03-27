@@ -126,3 +126,11 @@ pip install -r requirments.txt
     <img src="statistics/results/initialization/loss.png" width="400" height="400">
     <img src="statistics/results/initialization/acc.png" width="400" height="400">
     <br/>
+
+4. Regularizer Comparison
+    For comparison of different regularization techniques: weight_decay and dropout.
+    This gave us the following results:
+    <br/>
+    <img src="statistics/results/regularization/loss.png" width="400" height="400">
+    <img src="statistics/results/regularization/acc.png" width="400" height="400">
+    <br/>
