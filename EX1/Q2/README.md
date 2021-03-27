@@ -80,6 +80,14 @@ pip install -r requirments.txt
     ```sh
     python statistics/visualize_initialization_statistics.py
     ```
+4. Comparing regularization techniques:
+    ```sh
+    python compare_regularization.py
+    ```
+    and visualizing loss and accuracy, run:
+    ```sh
+    python statistics/visualize_regularization_statistics.py
+    ```
 
 ## Results
 1. Hyperparameter Grid Search
