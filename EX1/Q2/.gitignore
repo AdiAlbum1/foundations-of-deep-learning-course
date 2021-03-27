@@ -15,6 +15,10 @@ statistics/results/initialization/*
 !statistics/results/initialization/acc.png
 !statistics/results/initialization/loss.png
 
+statistics/results/regularization/*
+!statistics/results/regularization/acc.png
+!statistics/results/regularization/loss.png
+
 # Python Virtual Enviorment
 venv/
 
