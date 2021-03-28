@@ -88,6 +88,14 @@ pip install -r requirments.txt
     ```sh
     python statistics/visualize_regularization_statistics.py
     ```
+5. Comparing preprocessing techniques:
+    ```sh
+    python compare_preprocessing.py
+    ```
+    and visualizing loss and accuracy, run:
+    ```sh
+    python statistics/visualize_preprocessing_statistics.py
+    ```
 
 ## Results
 1. Hyperparameter Grid Search
@@ -133,4 +141,12 @@ pip install -r requirments.txt
     <br/>
     <img src="statistics/results/regularization/loss.png" width="400" height="400">
     <img src="statistics/results/regularization/acc.png" width="400" height="400">
+    <br/>
+
+5. Preprocessing Comparison
+    For comparisson of different preprocessing techniques: no-preprocessing vs whitening.
+    This gave us the following results:
+    <br/>
+    <img src="statistics/results/preprocessing/loss.png" width="400" height="400">
+    <img src="statistics/results/preprocessing/acc.png" width="400" height="400">
     <br/>

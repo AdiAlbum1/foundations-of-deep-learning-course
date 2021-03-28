@@ -19,6 +19,10 @@ statistics/results/regularization/*
 !statistics/results/regularization/acc.png
 !statistics/results/regularization/loss.png
 
+statistics/results/preprocessing/*
+!statistics/results/preprocessing/acc.png
+!statistics/results/preprocessing/loss.png
+
 # Python Virtual Enviorment
 venv/
 
