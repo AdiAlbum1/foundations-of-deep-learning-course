@@ -137,7 +137,7 @@ pip install -r requirments.txt
 
 4. Regularizer Comparison
     For comparison of different regularization techniques: weight_decay and dropout.
-    This gave us the following results:
+    This gave us the following results: <br/>
     weight_decay:
     <br/>
     <img src="statistics/results/regularization/loss_weight_decay.png" width="400" height="400">
