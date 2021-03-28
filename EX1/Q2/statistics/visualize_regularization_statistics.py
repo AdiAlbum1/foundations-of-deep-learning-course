@@ -42,8 +42,8 @@ def visualize_acc(train_acc_1, test_acc_1, train_acc_2, test_acc_2, train_acc_3,
     plt.close(fig)
 
 if __name__ == "__main__":
-    weight_decay_vals = [0, 0.01, 0.05]
-    p_dropouts = [0, 0.2, 0.35]
+    weight_decay_vals = [0, 0.01, 0.03]
+    p_dropouts = [0, 0.3, 0.5]
 
 
     weight_decay_stats_0 = np.load("statistics/results/regularization/results/regularization_weight_decay_stats_0.npy")
@@ -58,7 +58,7 @@ if __name__ == "__main__":
     train_loss_2, test_loss_2, train_acc_2, test_acc_2 = weight_decay_stats_2
     train_loss_3, test_loss_3, train_acc_3, test_acc_3 = dropout_stats_0
     train_loss_4, test_loss_4, train_acc_4, test_acc_4 = dropout_stats_1
-    train_loss_5, test_loss_5, train_acc_5, test_acc_5 = dropout_stats_1
+    train_loss_5, test_loss_5, train_acc_5, test_acc_5 = dropout_stats_2
 
     visualize_loss(train_loss_0, test_loss_0, train_loss_1, test_loss_1, train_loss_2, test_loss_2, "weight_decay", weight_decay_vals)
     visualize_acc(train_acc_0, test_acc_0, train_acc_1, test_acc_1, train_acc_2, test_acc_2, "weight_decay", weight_decay_vals)
