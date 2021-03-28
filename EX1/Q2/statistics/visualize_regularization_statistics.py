@@ -51,14 +51,16 @@ if __name__ == "__main__":
     weight_decay_stats_2 = np.load("statistics/results/regularization/results/regularization_weight_decay_stats_2.npy")
     dropout_stats_0 = np.load("statistics/results/regularization/results/regularization_dropout_stats_0.npy")
     dropout_stats_1 = np.load("statistics/results/regularization/results/regularization_dropout_stats_1.npy")
+    dropout_stats_2 = np.load("statistics/results/regularization/results/regularization_dropout_stats_2.npy")
 
     train_loss_0, test_loss_0, train_acc_0, test_acc_0 = weight_decay_stats_0
     train_loss_1, test_loss_1, train_acc_1, test_acc_1 = weight_decay_stats_1
     train_loss_2, test_loss_2, train_acc_2, test_acc_2 = weight_decay_stats_2
     train_loss_3, test_loss_3, train_acc_3, test_acc_3 = dropout_stats_0
     train_loss_4, test_loss_4, train_acc_4, test_acc_4 = dropout_stats_1
+    train_loss_5, test_loss_5, train_acc_5, test_acc_5 = dropout_stats_1
 
     visualize_loss(train_loss_0, test_loss_0, train_loss_1, test_loss_1, train_loss_2, test_loss_2, "weight_decay", weight_decay_vals)
     visualize_acc(train_acc_0, test_acc_0, train_acc_1, test_acc_1, train_acc_2, test_acc_2, "weight_decay", weight_decay_vals)
-    visualize_loss(train_loss_0, test_loss_0, train_loss_3, test_loss_3, train_loss_4, test_loss_4, "dropout_prob", p_dropouts)
-    visualize_acc(train_acc_0, test_acc_0, train_acc_3, test_acc_3, train_acc_4, test_acc_4, "dropout_prob", p_dropouts)
+    visualize_loss(train_loss_3, test_loss_3, train_loss_4, test_loss_4, train_loss_5, test_loss_5, "dropout_prob", p_dropouts)
+    visualize_acc(train_acc_3, test_acc_3, train_acc_4, test_acc_4, train_acc_5, test_acc_5, "dropout_prob", p_dropouts)
