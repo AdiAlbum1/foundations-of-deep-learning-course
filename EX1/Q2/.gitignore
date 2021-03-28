@@ -16,8 +16,10 @@ statistics/results/initialization/*
 !statistics/results/initialization/loss.png
 
 statistics/results/regularization/*
-!statistics/results/regularization/acc.png
-!statistics/results/regularization/loss.png
+!statistics/results/regularization/loss_weight_decay.png
+!statistics/results/regularization/acc_weight_decay.png
+!statistics/results/regularization/loss_dropout_prob.png
+!statistics/results/regularization/acc_dropout_prob.png
 
 statistics/results/preprocessing/*
 !statistics/results/preprocessing/acc.png
