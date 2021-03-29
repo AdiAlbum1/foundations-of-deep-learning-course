@@ -24,7 +24,7 @@ if __name__ == "__main__":
     loss_fn = torch.nn.CrossEntropyLoss()
 
     # --- train weight_decay models ---
-    weight_decay_vals = [0, 0.01, 0.05]
+    weight_decay_vals = [0, 0.01, 0.03]
 
     for i, weight_decay in enumerate(weight_decay_vals):
         # random initialize net
@@ -67,7 +67,7 @@ if __name__ == "__main__":
         np.save("statistics/results/regularization/results/regularization_weight_decay_stats_%d" %(i), np.array([train_loss_per_epoch, test_loss_per_epoch, train_acc_per_epoch, test_acc_per_epoch]))
         print()
 
-    p_dropouts = [0, 0.2, 0.35]
+    p_dropouts = [0, 0.3, 0.5]
 
     for i, p in enumerate(p_dropouts):
         net = Baseline_Network(D_in, H, D_out, is_dropout=True, p_dropout=p)
