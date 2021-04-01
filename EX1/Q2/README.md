@@ -31,7 +31,7 @@ and runtime?
 5. Preprocessing - Perform PCA whitening prior to training. How does this affect results and
 convergence time? You are allowed to use the sklearn implementation of PCA.
 6. Network Width - Experiment with the effect of varying width by training the network with
-one hidden layer using with a width of 2i where i = 6, 10, 12. Explain your results and plot
+one hidden layer using with a width of 2^i where i = 6, 10, 12. Explain your results and plot
 all accuracy and loss curves of the different configurations on the same graph (one plot for
 train/test loss and one for train/test accuracy).
 7. Network Depth - Fix the layer width to 64, and repeat a similar experiment with varying the
