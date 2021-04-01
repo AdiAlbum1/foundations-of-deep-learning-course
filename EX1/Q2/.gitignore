@@ -29,6 +29,10 @@ statistics/results/widths/*
 !statistics/results/widths/acc.png
 !statistics/results/widths/loss.png
 
+statistics/results/depths/*
+!statistics/results/depths/acc.png
+!statistics/results/depths/loss.png
+
 # Python Virtual Enviorment
 venv/
 

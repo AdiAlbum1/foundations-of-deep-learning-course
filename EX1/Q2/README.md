@@ -104,6 +104,14 @@ pip install -r requirments.txt
     ```sh
     python statistics/visualize_widths_statistics.py
     ```
+7. Comparing network depths:
+    ```sh
+    python compare_depths.py
+    ```
+    and visualizing loss and accuracy, run:
+    ```sh
+    python statistics/visualize_depths_statistics.py
+    ```
 
 ## Results
 1. Hyperparameter Grid Search<br/>
@@ -166,9 +174,17 @@ pip install -r requirments.txt
     <br/>
 
 6. Network Widths Comparison<br/>
-    For comparison of effect network width has on training.
+    For comparison of affect network width has on training.
     This gave us the following results:
     <br/>
     <img src="statistics/results/widths/loss.png" width="400" height="400">
     <img src="statistics/results/widths/acc.png" width="400" height="400">
+    <br/>
+
+7. Network Depths Comparison<br/>
+    For comparison of affect network depth has on training.
+    This gave us the following results:
+    <br/>
+    <img src="statistics/results/depths/loss.png" width="400" height="400">
+    <img src="statistics/results/depths/acc.png" width="400" height="400">
     <br/>    

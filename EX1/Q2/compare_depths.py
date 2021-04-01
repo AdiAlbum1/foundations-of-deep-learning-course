@@ -9,7 +9,7 @@ from statistics.calc_statistics import calc_dataset_acc, calc_dataset_loss
 
 if __name__ == "__main__":
     # D_in is input dimension; H is hidden dimension; D_out is output dimension.
-    epochs = 40
+    epochs = 80
     batch_size = 32
     # selected optimization parameters
     std, learning_rate, momentum = 0.1, 1e-3, 0.9
