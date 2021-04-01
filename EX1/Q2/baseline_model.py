@@ -2,10 +2,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 class Baseline_Network(nn.Module):
-    def __init__(self, D_in, H, D_out, is_dropout=False, p_dropout=0):
+    def __init__(self, d_in=3072, d_out=10, net_width=256, is_dropout=False, p_dropout=0):
         super(Baseline_Network, self).__init__()
-        self.input_layer = nn.Linear(D_in, H)
-        self.output_layer = nn.Linear(H, D_out)
+        self.input_layer = nn.Linear(d_in, net_width)
+        self.output_layer = nn.Linear(net_width, d_out)
         self.is_dropout = is_dropout
         if self.is_dropout:
             self.dropout = nn.Dropout(p_dropout)

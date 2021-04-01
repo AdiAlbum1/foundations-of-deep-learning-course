@@ -10,7 +10,7 @@ from statistics.calc_statistics import calc_dataset_acc, calc_dataset_loss
 if __name__ == "__main__":
     # D_in is input dimension; H is hidden dimension; D_out is output dimension.
     epochs = 30
-    batch_size, D_in, H, D_out = 32, 3072, 256, 10
+    batch_size = 32
     # selected optimization parameters
     std, learning_rate, momentum = 0.1, 1e-3, 0.9
 
@@ -18,7 +18,7 @@ if __name__ == "__main__":
     train_dataloader, test_dataloader = load_dataset(batch_size, whiten=False)
 
     # Define NN model
-    net = Baseline_Network(D_in, H, D_out)
+    net = Baseline_Network()
 
     # Define Loss function
     loss_fn = torch.nn.CrossEntropyLoss()
