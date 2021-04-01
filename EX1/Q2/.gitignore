@@ -25,6 +25,10 @@ statistics/results/preprocessing/*
 !statistics/results/preprocessing/acc.png
 !statistics/results/preprocessing/loss.png
 
+statistics/results/widths/*
+!statistics/results/widths/acc.png
+!statistics/results/widths/loss.png
+
 # Python Virtual Enviorment
 venv/
 
