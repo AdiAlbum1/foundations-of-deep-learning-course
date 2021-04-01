@@ -31,8 +31,8 @@ def visualize_acc(train_acc_1, test_acc_1, train_acc_2, test_acc_2):
     ax.set(xlabel='epochs', ylabel='acc',
            title="Compare preprocessing Accuracy")
     ax.grid()
-    legend = ["train_loss - no preprocessing", "train_loss - whitening",\
-              "test_loss - no preprocessing", "test_loss - whitening"]
+    legend = ["train_acc - no preprocessing", "train_acc - whitening",\
+              "test_acc - no preprocessing", "test_acc - whitening"]
     plt.legend(legend)
 
     fig.savefig("statistics/results/preprocessing/acc.png")
