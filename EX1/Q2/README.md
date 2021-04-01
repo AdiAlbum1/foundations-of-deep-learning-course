@@ -187,4 +187,4 @@ pip install -r requirments.txt
     <br/>
     <img src="statistics/results/depths/loss.png" width="400" height="400">
     <img src="statistics/results/depths/acc.png" width="400" height="400">
-    <br/>    
+    <br/>
