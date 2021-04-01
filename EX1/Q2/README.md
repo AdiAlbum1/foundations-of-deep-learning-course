@@ -106,7 +106,7 @@ pip install -r requirments.txt
     ```
 
 ## Results
-1. Hyperparameter Grid Search
+1. Hyperparameter Grid Search<br/>
 	For hyperparameter selection we used an exhaustive grid search over
     ```python
     stds = [0.05, 0.1, 0.3]
@@ -127,7 +127,7 @@ pip install -r requirments.txt
     The model converged very quickly to good results, with overfitting.
     We now can use this as a basis for tuning our training procedure.
 
-2. Optimizer Comparison
+2. Optimizer Comparison<br/>
     For optimizer comparison we compared SGD with above hyperparameters and Adam optimizer.
     This gave us the following results:
     <br/>
@@ -135,7 +135,7 @@ pip install -r requirments.txt
     <img src="statistics/results/optimization/acc.png" width="400" height="400">
     <br/>
 
-3. Initialization Technique Comparison
+3. Initialization Technique Comparison<br/>
     For initialization technique comparison we compared random normal initialization with Xavier initialization.
     This gave us the following results:
     <br/>
@@ -143,7 +143,7 @@ pip install -r requirments.txt
     <img src="statistics/results/initialization/acc.png" width="400" height="400">
     <br/>
 
-4. Regularizer Comparison
+4. Regularizer Comparison<br/>
     For comparison of different regularization techniques: weight_decay and dropout.
     This gave us the following results: <br/>
     weight_decay:
@@ -157,7 +157,7 @@ pip install -r requirments.txt
     <img src="statistics/results/regularization/acc_dropout_prob.png" width="400" height="400">
     <br/>
 
-5. Preprocessing Comparison
+5. Preprocessing Comparison<br/>
     For comparison of different preprocessing techniques: no-preprocessing vs whitening.
     This gave us the following results:
     <br/>
@@ -165,7 +165,7 @@ pip install -r requirments.txt
     <img src="statistics/results/preprocessing/acc.png" width="400" height="400">
     <br/>
 
-6. Network Widths Comparison
+6. Network Widths Comparison<br/>
     For comparison of effect network width has on training.
     This gave us the following results:
     <br/>
