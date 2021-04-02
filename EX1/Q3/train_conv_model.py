@@ -42,13 +42,15 @@ if __name__ == "__main__":
 
                     for i_batch, sample_batched in enumerate(train_dataloader):
                         images, labels = sample_batched
+                        labels = labels.to(torch.device("cuda:0"))
+                        images = images.to(torch.device("cuda:0"))
 
                         # zero the parameter gradients
                         optimizer.zero_grad()
 
                         # forward + backward + optimize
                         outputs = conv_net(images.float())
-                        loss = loss_fn(outputs, labels)
+                        loss = loss_fn(outputs, labels).cuda()
                         loss.backward()
                         optimizer.step()
 
