@@ -23,11 +23,7 @@ pip install -r requirments.txt
 
 ## Extract Dataset
 
-1. [Download dataset](https://download.pytorch.org/tutorial/data.zip)
-2. Unzip dataset and place it in [dataset folder](./dataset) with following structure:
-    ```
-    ./dataset/names/...
-    ```
+Dataset will be extracted using [seaborn](https://seaborn.pydata.org) library's dataset
 
 ## Usage
 1. Training RNN model:
