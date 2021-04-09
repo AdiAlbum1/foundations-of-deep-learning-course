@@ -1,4 +1,5 @@
 import torch
+import numpy as np
 import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
@@ -34,11 +35,11 @@ def load_dataset(batch_size, history_length):
         test_labels.append(test_dataset_scaled[i, 0])
 
     # Organize data in PyTorch DataLoader
-    tensor_train_x, tensor_train_y = torch.tensor(train_samples), torch.tensor(train_labels)
+    tensor_train_x, tensor_train_y = torch.tensor(np.array(train_samples)), torch.tensor(np.array(train_labels))
     tensor_train = torch.utils.data.TensorDataset(tensor_train_x, tensor_train_y)
     train_dataloader = torch.utils.data.DataLoader(tensor_train, batch_size=batch_size, shuffle=True)
 
-    tensor_test_x, tensor_test_y = torch.tensor(test_samples), torch.tensor(test_labels)
+    tensor_test_x, tensor_test_y = torch.tensor(np.array(test_samples)), torch.tensor(np.array(test_labels))
     tensor_test = torch.utils.data.TensorDataset(tensor_test_x, tensor_test_y)
     test_dataloader = torch.utils.data.DataLoader(tensor_test, batch_size=batch_size, shuffle=True)
 
@@ -46,7 +47,10 @@ def load_dataset(batch_size, history_length):
 
 
 if __name__ == "__main__":
-    train_dataloader, test_dataloader = load_dataset(4, 4)
+    train_dataloader, test_dataloader = load_dataset(batch_size=4, history_length=8)
 
-    print(len(train_dataloader))
-    print(len(test_dataloader))
+    for i_batch, sample_batched in enumerate(train_dataloader):
+        samples, labels = sample_batched
+        samples = np.reshape(samples, (samples.shape[0], samples.shape[1], 1))
+        print(samples.shape)
+        break
