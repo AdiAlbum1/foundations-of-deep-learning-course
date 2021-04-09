@@ -23,7 +23,16 @@ pip install -r requirments.txt
 
 ## Extract Dataset
 
-Dataset will be extracted using [seaborn](https://seaborn.pydata.org) library's dataset
+1. Extract dataset from [Yahoo Finance](https://finance.yahoo.com/quote/AAPL/history?p=AAPL&.tsrc=fin-srch). For training set we will use January 1st 2012 to December 31st 2018, and for test set we will use January 1st 2019 to December 31st 2020
+2. Name the train dataset's CSV train.csv and place it as follows:
+    ```
+    ./dataset/train.csv
+    ```
+3. Name the test dataset's CSV test.csv and place it as follows:
+    ```
+    ./dataset/test.csv
+    ```
+
 
 ## Usage
 1. Training RNN model:
