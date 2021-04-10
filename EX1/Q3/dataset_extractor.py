@@ -68,8 +68,11 @@ def reorganize_images_shape(images):
             reorganized_img.append(image[i])
             reorganized_img.append(image[i + 1024])
             reorganized_img.append(image[i + 2*1024])
-
-        img_in_shape = Image.frombytes("RGB", (32,32), bytes(reorganized_img), "raw")
+  
+        try:
+          img_in_shape = Image.frombytes("RGB", (32,32), bytes(reorganized_img), "raw")
+        except:
+          img_in_shape = np.reshape(np.array(reorganized_img), (32,32,3))
         reorganized_images.append(np.array(img_in_shape))
     reorganized_images = np.array(reorganized_images)
 
@@ -86,19 +89,22 @@ def load_dataset(batch_size, whiten=False):
     train_images, train_labels = subsample_dataset(all_train_images, all_train_labels)
     test_images, test_labels = subsample_dataset(all_test_images, all_test_labels)
 
+    train_images, test_images = np.array(train_images), np.array(test_images)
+
     if not whiten:
+        # Reorganize images to RGB format
+        train_images = reorganize_images_shape(train_images)
+        test_images = reorganize_images_shape(test_images)
+    else:
+      train_images, test_images = perform_data_whitening(train_images, test_images)
       # Reorganize images to RGB format
       train_images = reorganize_images_shape(train_images)
       test_images = reorganize_images_shape(test_images)
-    print(whiten)
 
     # Normalize images to [0,1] range by dividing by 255.0
     train_images = normalize_dataset(train_images)
     test_images = normalize_dataset(test_images)
-
-    if whiten:
-      train_images, test_images = perform_data_whitening(train_images, test_images)
-
+    
     # Organize data in PyTorch DataLoader
     tensor_train_x, tensor_train_y = torch.tensor(train_images), torch.tensor(train_labels)
     tensor_train = torch.utils.data.TensorDataset(tensor_train_x, tensor_train_y)
