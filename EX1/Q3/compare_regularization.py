@@ -70,14 +70,14 @@ if __name__ == "__main__":
 
     # # --- train new with dropout ---
     
-    # p_dropouts = [0, 0.3, 0.5]
+    p_dropouts = [0, 0.3, 0.5]
 
-    # for i, p in enumerate(p_dropouts):
-    #   net = Conv_Network(p_dropout=p)
-    #   net.random_init(std=std)  # init the params randomly
-    #   sgd_optimizer = torch.optim.SGD(net.parameters(),
-    #                                  lr=learning_rate,
-    #                                  momentum=momentum)
+    for i, p in enumerate(p_dropouts):
+      net = Conv_Network(p_dropout=p)
+      net.random_init(std=std)  # init the params randomly
+      sgd_optimizer = torch.optim.SGD(net.parameters(),
+                                     lr=learning_rate,
+                                     momentum=momentum)
 
-    #   train_network_with_optimizer(net, sgd_optimizer, loss_func, epochs,
-    #                                train_data, test_data, "dropout", i)
+      train_network_with_optimizer(net, sgd_optimizer, loss_func, epochs,
+                                   train_data, test_data, "dropout", i)
