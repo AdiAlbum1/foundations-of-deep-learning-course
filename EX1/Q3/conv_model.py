@@ -14,19 +14,23 @@ class Conv_Network(nn.Module):
         self.k = k
 
         if self.k>=3:
-          self.conv_layer_0 = nn.Conv2d(3, 3, 3)
-        
-        n =6
+          self.conv_layer_0 = nn.Conv2d(3, self.net_width[0], 3)
+          self.conv_layer_1 = nn.Conv2d(self.net_width[0], self.net_width[0], 3)
+        else:
+          self.conv_layer_1 = nn.Conv2d(3, self.net_width[0], 3)
+        n = 6
 
-        self.conv_layer_1 = nn.Conv2d(3, self.net_width[0], 3)
         self.max_pooling_2 = nn.MaxPool2d(2, stride=2)
 
         if self.k>=4:
           n = 5
-          self.conv_layer_2 = nn.Conv2d(self.net_width[0], 3, 3)
-          self.conv_layer_3 = nn.Conv2d(3, self.net_width[1], 3)
+          self.conv_layer_2 = nn.Conv2d(self.net_width[0], self.net_width[1], 3)
+          self.conv_layer_3 = nn.Conv2d(self.net_width[1], self.net_width[1], 3)
         else:
-          self.conv_layer_3 = nn.Conv2d(self.net_width[0], self.net_width[1], 3) 
+          if self.k == 3:
+            self.conv_layer_3 = nn.Conv2d(self.net_width[0], self.net_width[1], 3)
+          else:
+            self.conv_layer_3 = nn.Conv2d(self.net_width[0], self.net_width[1], 3)
 
         self.max_pooling_4 = nn.MaxPool2d(2, stride=2)
 
