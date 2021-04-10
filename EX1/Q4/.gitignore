@@ -2,8 +2,12 @@
 dataset/*
 !dataset/.gitkeep 
 
+# Results folder too large, so we won't upload it
+statistics/results/
+
 # PyCharm files
 .idea/
+__pycache__/
 
 # Virtual Enviorment
 venv/
