@@ -69,14 +69,137 @@ pip install -r requirments.txt
 ## Usage
 1. Training baseline model:
     ```sh
-    python train_conv_model.py
+    python train_baseline_model.py
     ```
-2. For visualizing loss and accuracy, run:
+    and visualizing loss and accuracy, run:
     ```sh
-    python visualize_statistics.py
+    python statistics/visualize_baseline_statistics.py
+    ```
+2. Comparing optimization techniques:
+    ```sh
+    python compare_optimization.py
+    ```
+    and visualizing loss and accuracy, run:
+    ```sh
+    python statistics/visualize_optimizer_statistics.py
+    ```
+3. Comparing initialization techniques:
+    ```sh
+    python compare_initialization.py
+    ```
+    and visualizing loss and accuracy, run:
+    ```sh
+    python statistics/visualize_initialization_statistics.py
+    ```
+4. Comparing regularization techniques:
+    ```sh
+    python compare_regularization.py
+    ```
+    and visualizing loss and accuracy, run:
+    ```sh
+    python statistics/visualize_regularization_statistics.py
+    ```
+5. Comparing preprocessing techniques:
+    ```sh
+    python compare_preprocessing.py
+    ```
+    and visualizing loss and accuracy, run:
+    ```sh
+    python statistics/visualize_preprocessing_statistics.py
+    ```
+6. Comparing network widths:
+    ```sh
+    python compare_widths.py
+    ```
+    and visualizing loss and accuracy, run:
+    ```sh
+    python statistics/visualize_widths_statistics.py
+    ```
+7. Comparing network depths:
+    ```sh
+    python compare_depths.py
+    ```
+    and visualizing loss and accuracy, run:
+    ```sh
+    python statistics/visualize_depths_statistics.py
+    ```
+8. Compare with or without residual blocks:
+    ```sh
+    TBD
     ```
 
 ## Results
-```
-TBD
-```
+1. Hyperparameter Grid Search<br/>
+	For hyperparameter selection we used an exhaustive grid search over
+    ```python
+    stds = [0.05, 0.1, 0.3]
+    learning_rates = [1e-3, 1e-2, 1e-1]
+    momentums = [0, 0.5, 0.9]
+    ```
+    We ran the search for 100 epochs, and selected
+    ```python
+    std = 0.1
+    learning_rate = 1e-3
+    momentum = 0.9
+    ```
+    This gave us the following results:
+    <br/>
+    <img src="statistics/results/baseline/hyperparameters_loss.png" width="400" height="400">
+    <img src="statistics/results/baseline/hyperparameters_acc.png" width="400" height="400">
+    <br/>
+    The model converged very quickly to good results, with overfitting.
+    We now can use this as a basis for tuning our training procedure.
+
+2. Optimizer Comparison<br/>
+    For optimizer comparison we compared SGD with above hyperparameters and Adam optimizer.
+    This gave us the following results:
+    <br/>
+    <img src="statistics/results/optimization/loss.png" width="400" height="400">
+    <img src="statistics/results/optimization/acc.png" width="400" height="400">
+    <br/>
+
+3. Initialization Technique Comparison<br/>
+    For initialization technique comparison we compared random normal initialization with Xavier initialization.
+    This gave us the following results:
+    <br/>
+    <img src="statistics/results/initialization/loss.png" width="400" height="400">
+    <img src="statistics/results/initialization/acc.png" width="400" height="400">
+    <br/>
+
+4. Regularizer Comparison<br/>
+    For comparison of different regularization techniques: weight_decay and dropout.
+    This gave us the following results: <br/>
+    weight_decay:
+    <br/>
+    <img src="statistics/results/regularization/loss_weight_decay.png" width="400" height="400">
+    <img src="statistics/results/regularization/acc_weight_decay.png" width="400" height="400">
+    <br/>
+    dropout:
+    <br/>
+    <img src="statistics/results/regularization/loss_dropout_prob.png" width="400" height="400">
+    <img src="statistics/results/regularization/acc_dropout_prob.png" width="400" height="400">
+    <br/>
+
+5. Preprocessing Comparison<br/>
+    For comparison of different preprocessing techniques: no-preprocessing vs whitening.
+    This gave us the following results:
+    <br/>
+    <img src="statistics/results/preprocessing/loss.png" width="400" height="400">
+    <img src="statistics/results/preprocessing/acc.png" width="400" height="400">
+    <br/>
+
+6. Network Widths Comparison<br/>
+    For comparison of affect network width has on training.
+    This gave us the following results:
+    <br/>
+    <img src="statistics/results/widths/loss.png" width="400" height="400">
+    <img src="statistics/results/widths/acc.png" width="400" height="400">
+    <br/>
+
+7. Network Depths Comparison<br/>
+    For comparison of affect network depth has on training.
+    This gave us the following results:
+    <br/>
+    <img src="statistics/results/depths/loss.png" width="400" height="400">
+    <img src="statistics/results/depths/acc.png" width="400" height="400">
+    <br/>
