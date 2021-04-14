@@ -6,13 +6,13 @@ import torch
 import numpy as np
 
 if __name__ == "__main__":
-    epochs = 20
+    epochs = 50
     batch_size = 1
-    history = 5
+    history = 30
     learning_rate = 1e-3
 
     # load dataset
-    train_dataloader, test_dataloader = load_dataset(batch_size, history)
+    train_dataloader, test_dataloader, train_scaler, test_scaler = load_dataset(batch_size, history)
 
     # define NN model
     lstm = LSTM()
@@ -43,11 +43,11 @@ if __name__ == "__main__":
             loss.backward()
             optimizer.step()
 
-        epoch_train_loss = calc_dataset_loss(train_dataloader, lstm, loss_fn, history, batch_size)
-        epoch_test_loss = calc_dataset_loss(test_dataloader, lstm, loss_fn, history, batch_size)
+        epoch_train_loss = calc_dataset_loss(train_dataloader, lstm, loss_fn, history, batch_size, train_scaler)
+        epoch_test_loss = calc_dataset_loss(test_dataloader, lstm, loss_fn, history, batch_size, test_scaler)
 
         print('[epoch: %d]\ttrain_loss: %.3f\ttest_loss: %.3f' %
-              (i+1, 1000*epoch_train_loss, 1000*epoch_test_loss))
+              (i+1, epoch_train_loss, epoch_test_loss))
 
         train_loss_per_epoch.append(epoch_train_loss)
         test_loss_per_epoch.append(epoch_test_loss)

@@ -4,12 +4,13 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
 def scale_dataset(train_dataset, test_dataset):
-    scaler = MinMaxScaler(feature_range=(0,1))
+    train_scaler = MinMaxScaler(feature_range=(-1,1))
+    # test_scaler = MinMaxScaler(feature_range=(-1,1))
 
-    train_dataset_scaled = scaler.fit_transform(train_dataset)
-    test_dataset_scaled = scaler.transform(test_dataset)
+    train_dataset_scaled = train_scaler.fit_transform(train_dataset)
+    test_dataset_scaled = train_scaler.transform(test_dataset)
 
-    return train_dataset_scaled, test_dataset_scaled
+    return train_dataset_scaled, test_dataset_scaled, train_scaler, train_scaler
 
 def load_dataset(batch_size, history_length):
     # Read data from CSV
@@ -21,7 +22,7 @@ def load_dataset(batch_size, history_length):
     test_dataset_processed = test_dataset_complete.iloc[:, 1:2].values
 
     # Scale dataset to (0,1) range
-    train_dataset_scaled, test_dataset_scaled = scale_dataset(train_dataset_processed, test_dataset_processed)
+    train_dataset_scaled, test_dataset_scaled, train_scaler, test_scaler = scale_dataset(train_dataset_processed, test_dataset_processed)
 
     # Reorganize data to right shape
     train_samples, train_labels = [], []
@@ -43,14 +44,4 @@ def load_dataset(batch_size, history_length):
     tensor_test = torch.utils.data.TensorDataset(tensor_test_x, tensor_test_y)
     test_dataloader = torch.utils.data.DataLoader(tensor_test, batch_size=batch_size, shuffle=True)
 
-    return train_dataloader, test_dataloader
-
-
-if __name__ == "__main__":
-    train_dataloader, test_dataloader = load_dataset(batch_size=4, history_length=8)
-
-    for i_batch, sample_batched in enumerate(train_dataloader):
-        samples, labels = sample_batched
-        samples = np.reshape(samples, (samples.shape[0], samples.shape[1], 1))
-        print(samples.shape)
-        break
+    return train_dataloader, test_dataloader, train_scaler, test_scaler
