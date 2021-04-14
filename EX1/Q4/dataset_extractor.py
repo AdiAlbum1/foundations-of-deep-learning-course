@@ -4,13 +4,12 @@ import pandas as pd
 from sklearn.preprocessing import MinMaxScaler
 
 def scale_dataset(train_dataset, test_dataset):
-    train_scaler = MinMaxScaler(feature_range=(-1,1))
-    # test_scaler = MinMaxScaler(feature_range=(-1,1))
+    scaler = MinMaxScaler(feature_range=(-1,1))
 
-    train_dataset_scaled = train_scaler.fit_transform(train_dataset)
-    test_dataset_scaled = train_scaler.transform(test_dataset)
+    train_dataset_scaled = scaler.fit_transform(train_dataset)
+    test_dataset_scaled = scaler.transform(test_dataset)
 
-    return train_dataset_scaled, test_dataset_scaled, train_scaler, train_scaler
+    return train_dataset_scaled, test_dataset_scaled, scaler
 
 def load_dataset(batch_size, history_length):
     # Read data from CSV
@@ -18,11 +17,15 @@ def load_dataset(batch_size, history_length):
     test_dataset_complete = pd.read_csv(r"./dataset/test.csv")
 
     # Read 'open' column only
-    train_dataset_processed = train_dataset_complete.iloc[:, 1:2].values
-    test_dataset_processed = test_dataset_complete.iloc[:, 1:2].values
+    test_dataset_processed = test_dataset_complete.iloc[:, 1:2].values.reshape(-1, 1)
+    train_dataset_processed = train_dataset_complete.iloc[:, 1:2].values.reshape(-1, 1)
+
+    # remove nans
+    train_dataset_processed = train_dataset_processed[~np.isnan(train_dataset_processed)].reshape(-1, 1)
+    test_dataset_processed = test_dataset_processed[~np.isnan(test_dataset_processed)].reshape(-1, 1)
 
     # Scale dataset to (0,1) range
-    train_dataset_scaled, test_dataset_scaled, train_scaler, test_scaler = scale_dataset(train_dataset_processed, test_dataset_processed)
+    train_dataset_scaled, test_dataset_scaled, scaler = scale_dataset(train_dataset_processed, test_dataset_processed)
 
     # Reorganize data to right shape
     train_samples, train_labels = [], []
@@ -44,4 +47,4 @@ def load_dataset(batch_size, history_length):
     tensor_test = torch.utils.data.TensorDataset(tensor_test_x, tensor_test_y)
     test_dataloader = torch.utils.data.DataLoader(tensor_test, batch_size=batch_size, shuffle=True)
 
-    return train_dataloader, test_dataloader, train_scaler, test_scaler
+    return train_dataloader, test_dataloader, scaler

@@ -13,6 +13,7 @@
 In this part you are free to use any dataset of your choice. Compare two recurrent architectures,
 RNN and LSTM, with hidden state size 100. Demonstrate the vanishing/exploding gradient
 problem, explaining your results along with empirical evidence supporting your claims.
+We chose a time-series prediction problem of the value of Gold everyday.
 
 ## Installation
 ```sh
@@ -23,7 +24,7 @@ pip install -r requirments.txt
 
 ## Extract Dataset
 
-1. Extract dataset from [Yahoo Finance](https://finance.yahoo.com/quote/AAPL/history?p=AAPL&.tsrc=fin-srch). For training set we will use January 1st 2012 to December 31st 2018, and for test set we will use January 1st 2019 to December 31st 2020
+1. Extract dataset from [Yahoo Finance](https://finance.yahoo.com/quote/GC%3DF?p=GC%3DF). For training set we will use January 1st 2012 to December 31st 2018, and for test set we will use January 1st 2019 to December 31st 2020
 2. Name the train dataset's CSV ```train.csv``` and place it as follows:
     ```
     ./dataset/train.csv
@@ -32,6 +33,7 @@ pip install -r requirments.txt
     ```
     ./dataset/test.csv
     ```
+
 
 
 ## Usage
