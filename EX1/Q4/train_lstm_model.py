@@ -6,16 +6,16 @@ import torch
 import numpy as np
 
 if __name__ == "__main__":
-    epochs = 50
+    epochs = 20
     batch_size = 1
-    history = 50
+    history = 100
     learning_rate = 1e-3
 
     # load dataset
     train_dataloader, test_dataloader, scaler = load_dataset(batch_size, history)
 
     # define NN model
-    lstm = LSTM()
+    lstm = LSTM(hidden_layer_size=100)
     lstm = lstm.double()
 
     # define loss function
