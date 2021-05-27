@@ -1,0 +1,52 @@
+\newcounter{lecture}
+
+\newtheorem{theorem}{Theorem}[lecture]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{procedure}[theorem]{Procedure}
+\newtheorem{conjecture}[theorem]{Conjecture}		
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+
+\numberwithin{equation}{lecture}
+\numberwithin{figure}{lecture}
+\numberwithin{table}{lecture}
+
+\renewcommand{\fnum@figure}{\textsc{Figure~\thefigure}}
+\renewcommand{\fnum@table}{\textsc{Table~\thetable}}
+
+\renewcommand{\thesection}{\thelecture.\arabic{section}}
+\renewcommand{\thepage}{\thelecture-\arabic{page}}
+
+\newcommand{\makeheader}[4]{
+	\setcounter{lecture}{#3}
+	\noindent
+	\parbox{9cm}{
+		Foundations of Deep Learning\\
+		School of Computer Science, Tel Aviv University\\
+		\rule{0mm}{6mm}%
+		{\it Instructor:} Nadav Cohen\\
+		{\it Teaching Assistant:} Noam Razin\\
+		{\it Scribe:}	#1\\
+		{\it Date:}     #2
+	}
+	\hfill
+	\begin{tabular}{c@{}}
+		{\bf\Large LECTURE}\\
+		\rule{0mm}{17mm}\scalebox{6.6}{\bf\thelecture}
+	\end{tabular}
+	
+	\vspace{2.5cm}
+	\begin{center}
+		{\LARGE \bf #4}
+	\end{center}
+	\vspace{1cm}
+	\thispagestyle{empty}
+}
+
