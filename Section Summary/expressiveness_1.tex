@@ -104,7 +104,7 @@
     		L(\frac{1}{d_1!}\textstyle \sum_{P\ perm\ mat}{PW_1^\ast}, \frac{1}{d_1!}\textstyle \sum_{P\ perm\ mat} W_2^{\ast}P^T, W_3^\ast, ..., W_N^\ast) \leq
     		\\\frac{1}{d_1!}\sum_{P\ perm\ mat}L(PW_1^\ast,W_2^{\ast}P^T,W_3^\ast,...,W_N^\ast)=L^\ast
 	    \end{align*}
-	    Where $Q:=\frac{1}{d_1!}\sum_{P\ perm\ mat}P = \frac{1}{d_1!}
+	    Where $Q:=\frac{1}{d_1!}\sum_{P\ perm\ mat}P = \frac{1}{d_1}
 	    \begin{bmatrix}
 	        1 & \cdots & 1 \\
 	        \vdots & \ddots & \vdots \\
@@ -140,7 +140,7 @@
 	\label{def:beta smooth function}				
 		A differentiable function $f:\mathbb{R}^d\to\mathbb{R}$ is \underline{$\beta$-smooth} if its gradient is $\beta$-Lipschitz, \ie:
 		\begin{align*}
-		    \forall\overrightarrow{w_1},\overrightarrow{w_2}\in\mathbb{R}^d:\norm{\nabla{f(\overrightarrow{w_1})}-\nabla{f(\overrightarrow{w_2})}}\leq\norm{\overrightarrow{w_1}-\overrightarrow{w_2}}
+		    \forall\overrightarrow{w_1},\overrightarrow{w_2}\in\mathbb{R}^d:\norm{\nabla{f(\overrightarrow{w_1})}-\nabla{f(\overrightarrow{w_2})}}\leq \beta \norm{\overrightarrow{w_1}-\overrightarrow{w_2}}
 	    \end{align*}
 	\end{definition}
 	\begin{lemma}
