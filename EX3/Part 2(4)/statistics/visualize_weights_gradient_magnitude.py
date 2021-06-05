@@ -6,9 +6,9 @@ if __name__ == "__main__":
     for N in neural_net_depths:
         weights_gradient_magnitude = np.load("statistics/results/depth_%d/train_weights_gradient_magnitude.npy" %N)
 
-        x_axis = list(range(len(weights_gradient_magnitude)))
+        x_axis = list(range(5, len(weights_gradient_magnitude)))
         fig, ax = plt.subplots()
-        ax.plot(x_axis, weights_gradient_magnitude)
+        ax.plot(x_axis, weights_gradient_magnitude[5:])
         ax.set(xlabel='epochs', ylabel='magnitude', title='Weights\' Gradient Magnitudes\nDepth: %d'%N)
         ax.grid()
 

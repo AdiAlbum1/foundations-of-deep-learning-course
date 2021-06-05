@@ -8,10 +8,10 @@ if __name__ == "__main__":
 
         train_loss_per_epoch, test_loss_per_epoch = train_stats
 
-        x_axis = list(range(len(train_loss_per_epoch)))
+        x_axis = list(range(5, len(train_loss_per_epoch)))
         fig, ax = plt.subplots()
-        ax.plot(x_axis, train_loss_per_epoch)
-        ax.plot(x_axis, test_loss_per_epoch)
+        ax.plot(x_axis, train_loss_per_epoch[5:])
+        ax.plot(x_axis, test_loss_per_epoch[5:])
         ax.set(xlabel='epochs', ylabel='loss', title='training procedure')
         ax.grid()
         plt.legend(["train_loss", "test_loss"])
