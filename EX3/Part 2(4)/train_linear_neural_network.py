@@ -4,7 +4,7 @@ import numpy as np
 from dataset.dataset_extractor import load_dataset
 import dataset.config as config
 
-from linear_nueral_network_model import Linear_Network
+from linear_neural_network_model import Linear_Network
 
 from statistics.calc_dataset_loss import calc_dataset_loss
 from statistics.calc_weights_gradients_magnitude import calc_weights_gradients_magnitude
