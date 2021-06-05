@@ -51,4 +51,62 @@ Dataset is a noisy sample of trigonometric tan(x)
     ```
 
 ## Results
-TBD
+1. Training procedure - Train and Test Loss:<br/>
+    <br/>
+    <img src="statistics/results/train_loss.png" width="400" height="400">
+    <img src="statistics/results/test_loss.png" width="400" height="400">
+    <br/>
+
+2. Optimizer Comparison<br/>
+    For optimizer comparison we compared SGD with above hyperparameters and Adam optimizer.
+    This gave us the following results:
+    <br/>
+    <img src="statistics/results/optimization/loss.png" width="400" height="400">
+    <img src="statistics/results/optimization/acc.png" width="400" height="400">
+    <br/>
+
+3. Initialization Technique Comparison<br/>
+    For initialization technique comparison we compared random normal initialization with Xavier initialization.
+    This gave us the following results:
+    <br/>
+    <img src="statistics/results/initialization/loss.png" width="400" height="400">
+    <img src="statistics/results/initialization/acc.png" width="400" height="400">
+    <br/>
+
+4. Regularizer Comparison<br/>
+    For comparison of different regularization techniques: weight_decay and dropout.
+    This gave us the following results: <br/>
+    weight_decay:
+    <br/>
+    <img src="statistics/results/regularization/loss_weight_decay.png" width="400" height="400">
+    <img src="statistics/results/regularization/acc_weight_decay.png" width="400" height="400">
+    <br/>
+    dropout:
+    <br/>
+    <img src="statistics/results/regularization/loss_dropout_prob.png" width="400" height="400">
+    <img src="statistics/results/regularization/acc_dropout_prob.png" width="400" height="400">
+    <br/>
+
+5. Preprocessing Comparison<br/>
+    For comparison of different preprocessing techniques: no-preprocessing vs whitening.
+    This gave us the following results:
+    <br/>
+    <img src="statistics/results/preprocessing/loss.png" width="400" height="400">
+    <img src="statistics/results/preprocessing/acc.png" width="400" height="400">
+    <br/>
+
+6. Network Widths Comparison<br/>
+    For comparison of affect network width has on training.
+    This gave us the following results:
+    <br/>
+    <img src="statistics/results/widths/loss.png" width="400" height="400">
+    <img src="statistics/results/widths/acc.png" width="400" height="400">
+    <br/>
+
+7. Network Depths Comparison<br/>
+    For comparison of affect network depth has on training.
+    This gave us the following results:
+    <br/>
+    <img src="statistics/results/depths/loss.png" width="400" height="400">
+    <img src="statistics/results/depths/acc.png" width="400" height="400">
+    <br/>
