@@ -43,7 +43,7 @@ Dataset is a noisy sample of trigonometric tan(x)
     ```
 3. For visualizing the weights' gradient magnitude throughout training, run:
     ```sh
-    python statistics/visualize_weights_gradient_magnitude.py.py
+    python statistics/visualize_weights_gradient_magnitude.py
     ```
 4. For visualizing weights' gradients Hessian min and max eigenvalue, run:
     ```sh
