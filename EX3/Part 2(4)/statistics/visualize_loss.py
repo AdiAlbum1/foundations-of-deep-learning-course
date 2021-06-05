@@ -23,7 +23,7 @@ if __name__ == "__main__":
     fig.savefig("statistics/results/train_loss.png")
     plt.close(fig)
 
-    # Train loss plot
+    # Train test plot
     x_axis = list(range(8, len(test_loss_N_2_per_epoch)))
     fig, ax = plt.subplots()
     ax.plot(x_axis, test_loss_N_2_per_epoch[8:])
