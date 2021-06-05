@@ -1,10 +1,10 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-DATASET_PATH = "dataset/data.npy"
+import dataset.config as config
 
 if __name__ == "__main__":
-    data = np.load(DATASET_PATH)
+    data = np.load(config.DATASET_PATH)
     data_x, data_y = data
 
     plt.title("Our Data")

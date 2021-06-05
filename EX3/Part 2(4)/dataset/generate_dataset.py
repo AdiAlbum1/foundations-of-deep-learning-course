@@ -1,6 +1,6 @@
 import numpy as np
 import math
-
+import dataset.config as config
 DATASET_SIZE = 500
 
 if __name__ == "__main__":
@@ -10,4 +10,4 @@ if __name__ == "__main__":
     output_data = np.add(output_without_noise, output_noise)
 
     data = np.vstack((input_data, output_data))
-    np.save("dataset/data", data)
+    np.save(config.DATASET_PATH.split(".")[0], data)
