@@ -45,7 +45,7 @@ Dataset is a noisy sample of trigonometric tan(x)
     ```sh
     python statistics/visualize_weights_gradient_magnitude.py
     ```
-4. For visualizing weights' gradients Hessian min and max eigenvalue, run:
+4. For visualizing the weights' gradient Hessian min and max eigenvalue, run:
     ```sh
     python statistics/visualize_min_and_max_hessian_eigenvals.py
     ```
