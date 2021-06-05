@@ -104,7 +104,7 @@ if __name__ == "__main__":
                 loss = loss_fn(outputs, batch_y)
                 loss.backward()
 
-                linear_net = end_to_end_dynamics_weight_update(linear_net)
+                linear_net = end_to_end_dynamics_weight_update(linear_net, N, learning_rate)
                 # optimizer.step()
 
             # calculate train & test loss

@@ -1,40 +1,45 @@
 import torch
 import numpy as np
 
-def end_to_end_dynamics_weight_update(net):
-    weights_vector = obtain_weights_vector(net)
-    gradients_vector = obtain_gradients_vector(net)
 
-    updated_weights_vector = calculate_updated_weights_vector(weights_vector, gradients_vector)
+def end_to_end_dynamics_weight_update(net, N, eta):
+    network_parameters = net.parameters()
+    new_network_parameters = []
+
+    # calculate new network parameters
+    for network_param in network_parameters:
+        w = network_param
+        grad_of_l_at_w = network_param.grad  # obtain gradients
+
+        w_transpose = torch.transpose(w, 0, 1)
+
+        w_times_w_transpose = torch.matmul(w, w_transpose)
+        w_transpose_times_w = torch.matmul(w_transpose, w)
+
+        partial_sum = 0
+        for j in range(1, N + 1):
+            # SVD decompose w_times_w_transpose
+            u, s, vh = np.linalg.svd(np.array(w_times_w_transpose.detach()))
+            # power each element on s's diagonal by (j-1)/N
+            s = np.power(s, ((j - 1) / N))
+            w_times_w_transpose_powered = np.matmul(np.matmul(u, np.diag(s)), vh)
+
+            # SVD decompose w_transpose_times_w
+            u, s, vh = np.linalg.svd(np.array(w_transpose_times_w.detach()))
+            # power each element on s's diagonal by (N-j)/N
+            s = np.power(s, (N - j) / N)
+            w_transpose_times_w_powered = np.matmul(np.matmul(u, np.diag(s)), vh)
+
+            curr_elem_in_sum = np.matmul(np.matmul(w_times_w_transpose_powered, grad_of_l_at_w),
+                                         w_transpose_times_w_powered)
+
+            partial_sum = np.add(partial_sum, curr_elem_in_sum)
+
+        new_network_param = network_param - eta * partial_sum
+        new_network_parameters.append(new_network_param)
+
+    # perform network parameters update
+    for i, p in enumerate(net.parameters()):
+        p.data = new_network_parameters[i]
+
     return net
-
-def calculate_updated_weights_vector(weights_vector, gradients_vector):
-    weights_vector = torch.reshape(weights_vector, (len(weights_vector), 1))
-    weights_vector_transposed = torch.transpose(weights_vector, 0, 1)
-
-    w_times_w_transpose = torch.matmul(weights_vector, weights_vector_transposed)
-    w_transposed_times_w = torch.matmul(weights_vector_transposed, weights_vector)
-
-    # SVD decompose w_times_w_transpose
-    u, s, vh = np.linalg.svd(w_times_w_transpose)
-
-    
-
-    print(w_times_w_transpose.shape)
-    print(w_transposed_times_w.shape)
-
-def obtain_weights_vector(net):
-    weights_vector = torch.zeros(0)
-    weights = net.parameters()
-    for weight in weights:
-        weights_vector = torch.cat((weights_vector, torch.flatten(weight.data)), 0)
-
-    return weights_vector
-
-def obtain_gradients_vector(net):
-    grads = []
-    for param in net.parameters():
-        grads.append(param.grad.view(-1))
-    grads = torch.cat(grads)
-
-    return grads
