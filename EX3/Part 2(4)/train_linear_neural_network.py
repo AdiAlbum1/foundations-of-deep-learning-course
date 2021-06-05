@@ -38,7 +38,7 @@ if __name__ == "__main__":
 
         # train network
         # collect statistics
-        train_loss_per_epoch, test_loss_per_epoch, train_acc_per_epoch, test_acc_per_epoch = [], [], [], []
+        train_loss_per_epoch, test_loss_per_epoch = [], []
         weights_gradient_magnitude_per_epoch = []
         min_eigenvalue_per_epoch = []
         max_eigenvalue_per_epoch = []
