@@ -12,8 +12,8 @@ from statistics.calc_min_and_max_eigenval_of_hessian import calc_min_and_max_eig
 
 
 if __name__ == "__main__":
+    neural_net_depths = [2, 3, 4]
     epochs = 100
-    N = 3                                   # Net depth
     input_dim, output_dim = config.INPUT_DIM, config.OUTPUT_DIM
     hidden_dims = 1
     weight_init_std = 1.7
@@ -22,60 +22,60 @@ if __name__ == "__main__":
     # load dataset
     train_dataloader, test_dataloader = load_dataset()
 
-    # define nn
-    linear_net = Linear_Network(input_dim, hidden_dims, output_dim, N)
+    for N in neural_net_depths:
 
-    # define Loss function
-    loss_fn = torch.nn.MSELoss()
+        # define nn
+        linear_net = Linear_Network(input_dim, hidden_dims, output_dim, N)
 
-    # randomly initialize network weights
-    linear_net.normal_random_init(std=weight_init_std)
-    # linear_net.normal_random_init()
+        # define Loss function
+        loss_fn = torch.nn.MSELoss()
 
-    # define optimizer
-    optimizer = torch.optim.SGD(linear_net.parameters(), lr=learning_rate)
+        # randomly initialize network weights
+        linear_net.normal_random_init(std=weight_init_std)
 
-    # train network
-    train_loss_per_epoch, test_loss_per_epoch, train_acc_per_epoch, test_acc_per_epoch = [], [], [], []
-    weights_gradient_magnitude_per_epoch = []
-    min_eigenvalue_per_epoch = []
-    max_eigenvalue_per_epoch = []
+        # define optimizer
+        optimizer = torch.optim.SGD(linear_net.parameters(), lr=learning_rate)
 
-    for epoch in range(epochs):
-        for sample_batched in train_dataloader:
-            batch_x, batch_y = sample_batched
+        # train network
+        # collect statistics
+        train_loss_per_epoch, test_loss_per_epoch, train_acc_per_epoch, test_acc_per_epoch = [], [], [], []
+        weights_gradient_magnitude_per_epoch = []
+        min_eigenvalue_per_epoch = []
+        max_eigenvalue_per_epoch = []
 
-            # zero the parameter gradients
-            optimizer.zero_grad()
+        for epoch in range(epochs):
+            for sample_batched in train_dataloader:
+                batch_x, batch_y = sample_batched
 
-            # forward + backward + optimize
-            outputs = linear_net(batch_x)
-            batch_y = torch.reshape(batch_y, (len(batch_y), 1))
-            outputs = torch.reshape(outputs, (len(outputs), 1))
-            loss = loss_fn(outputs, batch_y)
-            loss.backward()
-            optimizer.step()
+                # zero the parameter gradients
+                optimizer.zero_grad()
 
-        # calculate train & test loss
-        epoch_train_loss = calc_dataset_loss(train_dataloader, linear_net, loss_fn)
-        epoch_test_loss = calc_dataset_loss(test_dataloader, linear_net, loss_fn)
+                # forward + backward + optimize
+                outputs = linear_net(batch_x)
+                loss = loss_fn(outputs, batch_y)
+                loss.backward()
+                optimizer.step()
 
-        train_loss_per_epoch.append(epoch_train_loss)
-        test_loss_per_epoch.append(epoch_test_loss)
+            # calculate train & test loss
+            epoch_train_loss = calc_dataset_loss(train_dataloader, linear_net, loss_fn)
+            epoch_test_loss = calc_dataset_loss(test_dataloader, linear_net, loss_fn)
 
-        # calculate weights gradient magnitude
-        curr_weights_gradient_magnitude = calc_weights_gradients_magnitude(linear_net)
-        weights_gradient_magnitude_per_epoch.append(curr_weights_gradient_magnitude)
+            train_loss_per_epoch.append(epoch_train_loss)
+            test_loss_per_epoch.append(epoch_test_loss)
 
-        # calculate min and max eigenvalue of hessian
-        min_eigenval, max_eigenval = calc_min_and_max_eigenval_of_hessian(linear_net, loss_fn, train_dataloader, N)
-        min_eigenvalue_per_epoch.append(min_eigenval)
-        max_eigenvalue_per_epoch.append(max_eigenval)
+            # calculate weights gradient magnitude
+            curr_weights_gradient_magnitude = calc_weights_gradients_magnitude(linear_net)
+            weights_gradient_magnitude_per_epoch.append(curr_weights_gradient_magnitude)
 
-        print('[epoch %d]\ttrain_loss: %.3f\t test_loss: %.3f' %
-              (epoch + 1, epoch_train_loss, epoch_test_loss))
+            # calculate min and max eigenvalue of hessian
+            min_eigenval, max_eigenval = calc_min_and_max_eigenval_of_hessian(linear_net, loss_fn, train_dataloader, N)
+            min_eigenvalue_per_epoch.append(min_eigenval)
+            max_eigenvalue_per_epoch.append(max_eigenval)
 
-    np.save("statistics/results/train_stats", np.array([train_loss_per_epoch, test_loss_per_epoch]))
-    np.save("statistics/results/train_weights_gradient_magnitude", np.array(weights_gradient_magnitude_per_epoch))
-    np.save("statistics/results/min_eigenval", np.array(min_eigenvalue_per_epoch))
-    np.save("statistics/results/max_eigenval", np.array(max_eigenvalue_per_epoch))
+            print('[epoch %d]\ttrain_loss: %.3f\t test_loss: %.3f' %
+                  (epoch + 1, epoch_train_loss, epoch_test_loss))
+
+        np.save("statistics/results/depth_%d/train_stats" %N, np.array([train_loss_per_epoch, test_loss_per_epoch]))
+        np.save("statistics/results/depth_%d/train_weights_gradient_magnitude" %N, np.array(weights_gradient_magnitude_per_epoch))
+        np.save("statistics/results/depth_%d/min_eigenval" %N, np.array(min_eigenvalue_per_epoch))
+        np.save("statistics/results/depth_%d/max_eigenval" %N, np.array(max_eigenvalue_per_epoch))
