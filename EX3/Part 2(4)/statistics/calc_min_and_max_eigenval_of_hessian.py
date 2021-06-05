@@ -1,12 +1,20 @@
 from pyhessian import hessian
 
-def calc_min_and_max_eigenval_of_hessian(net, loss_fn, train_dataloader, n_eigenvalues):
+def count_num_weights(N, hidden_dim):
+    count = 1       # input_layer adds 1
+    count += (N-1)*hidden_dim
+    count += 1      # output_layer adds 1
+
+    return count
+
+def calc_min_and_max_eigenval_of_hessian(net, loss_fn, train_dataloader, N, hidden_dim):
+    n_eigenvalues = count_num_weights(N, hidden_dim)
     hessian_comp = hessian(net,
                            loss_fn,
                            dataloader=train_dataloader,
                            cuda=False)
 
-    eigenvalues = hessian_comp.eigenvalues(top_n=n_eigenvalues)
+    eigenvalues = hessian_comp.eigenvalues(top_n=n_eigenvalues, maxIter=300, tol=1e-4)
     max_eigenvalue = eigenvalues[0][0]
     min_eigenvalue = eigenvalues[0][-1]
 

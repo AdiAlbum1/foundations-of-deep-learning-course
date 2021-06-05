@@ -11,11 +11,11 @@ if __name__ == "__main__":
     train_loss_N_4_per_epoch, test_loss_N_4_per_epoch = train_stats_N_4
 
     # Train loss plot
-    x_axis = list(range(8, len(train_loss_N_2_per_epoch)))
+    x_axis = list(range(3, len(train_loss_N_2_per_epoch)))
     fig, ax = plt.subplots()
-    ax.plot(x_axis, train_loss_N_2_per_epoch[8:])
-    ax.plot(x_axis, train_loss_N_3_per_epoch[8:])
-    ax.plot(x_axis, train_loss_N_4_per_epoch[8:])
+    ax.plot(x_axis, train_loss_N_2_per_epoch[3:])
+    ax.plot(x_axis, train_loss_N_3_per_epoch[3:])
+    ax.plot(x_axis, train_loss_N_4_per_epoch[3:])
     ax.set(xlabel='epochs', ylabel='loss', title='Train loss per epoch')
     ax.grid()
     plt.legend(["N=2", "N=3", "N=4"])
@@ -24,11 +24,11 @@ if __name__ == "__main__":
     plt.close(fig)
 
     # Train test plot
-    x_axis = list(range(8, len(test_loss_N_2_per_epoch)))
+    x_axis = list(range(3, len(test_loss_N_2_per_epoch)))
     fig, ax = plt.subplots()
-    ax.plot(x_axis, test_loss_N_2_per_epoch[8:])
-    ax.plot(x_axis, test_loss_N_3_per_epoch[8:])
-    ax.plot(x_axis, test_loss_N_4_per_epoch[8:])
+    ax.plot(x_axis, test_loss_N_2_per_epoch[3:])
+    ax.plot(x_axis, test_loss_N_3_per_epoch[3:])
+    ax.plot(x_axis, test_loss_N_4_per_epoch[3:])
     ax.set(xlabel='epochs', ylabel='loss', title='Test loss per epoch')
     ax.grid()
     plt.legend(["N=2", "N=3", "N=4"])
