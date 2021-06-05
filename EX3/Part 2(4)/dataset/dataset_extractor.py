@@ -23,6 +23,14 @@ def read_dataset(path):
     data_x, data_y = data
     return data_x, data_y
 
+def reshape_dataset(train_x, train_y, test_x, test_y):
+    train_x = torch.tensor(train_x).reshape((len(train_x), 1))
+    train_y = torch.tensor(train_y).reshape((len(train_y), 1))
+    test_x = torch.tensor(test_x).reshape((len(test_x), 1))
+    test_y = torch.tensor(test_y).reshape((len(test_y), 1))
+    return train_x, train_y, test_x, test_y
+
+
 def load_dataset():
     # read dataset from file
     data_x, data_y = read_dataset(config.DATASET_PATH)
@@ -33,12 +41,15 @@ def load_dataset():
     # split to train and test
     (train_x, train_y), (test_x, test_y) = split_train_test(data_x, data_y)
 
+    # reshape dataset
+    train_x, train_y, test_x, test_y = reshape_dataset(train_x, train_y, test_x, test_y)
+
     # Organize data in PyTorch DataLoader
-    tensor_train_x, tensor_train_y = torch.tensor(train_x), torch.tensor(train_y)
+    tensor_train_x, tensor_train_y = train_x.float(), train_y.float()
     tensor_train = torch.utils.data.TensorDataset(tensor_train_x, tensor_train_y)
     train_dataloader = torch.utils.data.DataLoader(tensor_train, batch_size=len(tensor_train))
 
-    tensor_test_x, tensor_test_y = torch.tensor(test_x), torch.tensor(test_y)
+    tensor_test_x, tensor_test_y = test_x.float(), test_y.float()
     tensor_test = torch.utils.data.TensorDataset(tensor_test_x, tensor_test_y)
     test_dataloader = torch.utils.data.DataLoader(tensor_test, batch_size=len(tensor_test))
 

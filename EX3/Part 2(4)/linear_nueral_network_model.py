@@ -1,5 +1,6 @@
 import torch.nn as nn
 import torch.nn.functional as F
+import torch
 
 class Linear_Network(nn.Module):
     def __init__(self, D_in, D_hidden, D_out, N=2):
