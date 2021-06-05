@@ -13,10 +13,10 @@ from statistics.calc_min_and_max_eigenval_of_hessian import calc_min_and_max_eig
 
 if __name__ == "__main__":
     neural_net_depths = [2, 3, 4]
-    epochs = 100
+    epochs = 50
     input_dim, output_dim = config.INPUT_DIM, config.OUTPUT_DIM
-    hidden_dims = 1
-    weight_init_std = 1.7
+    hidden_dim = 3
+    weight_init_std = 0.8
     learning_rate = 1e-2
 
     # load dataset
@@ -25,7 +25,7 @@ if __name__ == "__main__":
     for N in neural_net_depths:
 
         # define nn
-        linear_net = Linear_Network(input_dim, hidden_dims, output_dim, N)
+        linear_net = Linear_Network(input_dim, hidden_dim, output_dim, N)
 
         # define Loss function
         loss_fn = torch.nn.MSELoss()
@@ -38,7 +38,7 @@ if __name__ == "__main__":
 
         # train network
         # collect statistics
-        train_loss_per_epoch, test_loss_per_epoch, train_acc_per_epoch, test_acc_per_epoch = [], [], [], []
+        train_loss_per_epoch, test_loss_per_epoch = [], []
         weights_gradient_magnitude_per_epoch = []
         min_eigenvalue_per_epoch = []
         max_eigenvalue_per_epoch = []
@@ -68,7 +68,7 @@ if __name__ == "__main__":
             weights_gradient_magnitude_per_epoch.append(curr_weights_gradient_magnitude)
 
             # calculate min and max eigenvalue of hessian
-            min_eigenval, max_eigenval = calc_min_and_max_eigenval_of_hessian(linear_net, loss_fn, train_dataloader, N)
+            min_eigenval, max_eigenval = calc_min_and_max_eigenval_of_hessian(linear_net, loss_fn, train_dataloader, N, hidden_dim)
             min_eigenvalue_per_epoch.append(min_eigenval)
             max_eigenvalue_per_epoch.append(max_eigenval)
 
