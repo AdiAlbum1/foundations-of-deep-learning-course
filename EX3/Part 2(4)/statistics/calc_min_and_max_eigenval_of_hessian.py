@@ -1,9 +1,9 @@
 from pyhessian import hessian
 
 def count_num_weights(N, hidden_dim):
-    count = 1       # input_layer adds 1
-    count += (N-1)*hidden_dim
-    count += 1      # output_layer adds 1
+    count = 1*hidden_dim       # input_layer adds 1
+    count += (N-2)*hidden_dim*hidden_dim
+    count += 1*hidden_dim      # output_layer adds 1
 
     return count
 
