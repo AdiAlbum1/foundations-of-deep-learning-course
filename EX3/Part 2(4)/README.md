@@ -65,12 +65,10 @@ Dataset is a noisy sample of trigonometric tan(x)
     <img src="statistics/results/optimization/acc.png" width="400" height="400">
     <br/>
 
-3. Initialization Technique Comparison<br/>
-    For initialization technique comparison we compared random normal initialization with Xavier initialization.
-    This gave us the following results:
+3. Weights' gradient Hessian min and max eigenvalue<br/>
     <br/>
-    <img src="statistics/results/initialization/loss.png" width="400" height="400">
-    <img src="statistics/results/initialization/acc.png" width="400" height="400">
+    <img src="statistics/results/max_eigenvals.png" width="400" height="400">
+    <img src="statistics/results/min_eigenvals.png" width="400" height="400">
     <br/>
 
 4. Regularizer Comparison<br/>
