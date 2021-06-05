@@ -20,15 +20,21 @@ def end_to_end_dynamics_weight_update(net, N, eta):
         for j in range(1, N + 1):
             # SVD decompose w_times_w_transpose
             u, s, vh = np.linalg.svd(np.array(w_times_w_transpose.detach()))
-            # power each element on s's diagonal by (j-1)/N
-            s = np.power(s, ((j - 1) / N))
-            w_times_w_transpose_powered = np.matmul(np.matmul(u, np.diag(s)), vh)
+            if j-1 == 0:
+                w_times_w_transpose_powered = np.identity(len(s))
+            else:
+                # power each element on s's diagonal by (j-1)/N
+                s = np.power(s, ((j - 1) / N))
+                w_times_w_transpose_powered = np.matmul(np.matmul(u, np.diag(s)), vh)
 
             # SVD decompose w_transpose_times_w
             u, s, vh = np.linalg.svd(np.array(w_transpose_times_w.detach()))
-            # power each element on s's diagonal by (N-j)/N
-            s = np.power(s, (N - j) / N)
-            w_transpose_times_w_powered = np.matmul(np.matmul(u, np.diag(s)), vh)
+            if N-j == 0:
+                w_transpose_times_w_powered = np.identity(len(s))
+            else:
+                # power each element on s's diagonal by (N-j)/N
+                s = np.power(s, (N - j) / N)
+                w_transpose_times_w_powered = np.matmul(np.matmul(u, np.diag(s)), vh)
 
             curr_elem_in_sum = np.matmul(np.matmul(w_times_w_transpose_powered, grad_of_l_at_w),
                                          w_transpose_times_w_powered)
@@ -40,6 +46,6 @@ def end_to_end_dynamics_weight_update(net, N, eta):
 
     # perform network parameters update
     for i, p in enumerate(net.parameters()):
-        p.data = new_network_parameters[i]
+        p.data = new_network_parameters[i].float()
 
     return net

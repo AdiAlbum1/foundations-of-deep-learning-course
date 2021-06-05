@@ -26,7 +26,7 @@ class Linear_Network(nn.Module):
         nn.init.normal_(self.output_layer.weight, mean=0.0, std=std)
 
     def forward(self, x):
-        layer = self.input_layer(x)
+        layer = self.input_layer(x.float())
 
         if self.N >= 3:
             layer = self.first_hidden_layer(layer)
