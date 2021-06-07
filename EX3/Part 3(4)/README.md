@@ -15,7 +15,7 @@ N linear neural network (with hidden width no smaller than the minimum between i
 dimension and output dimension) by minimizing l2 loss via (full batch) gradient descent with
 small learning rate and initialization close to zero. Compare the trajectory taken by the endto-end matrix to that obtained by directly applying the (discrete version of the) end-to-end
 dynamics to a linear model.
-We repeat the experiment with depths $N=2, 3$
+We repeat the experiment with depths N=2, 3
 
 ## Installation
 ```sh
