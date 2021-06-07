@@ -42,8 +42,12 @@ Dataset is a noisy sample of trigonometric tan(x)
     ```
 
 ## Results
-Training procedure - Train and Test Loss:<br/>
-<br/>
-<img src="statistics/results/train_loss.png" width="400" height="400">
-<img src="statistics/results/test_loss.png" width="400" height="400">
-<br/>
+1. Training procedure - Train and Test Loss:<br/>
+    <br/>
+    <img src="statistics/results/train_loss.png" width="400" height="400">
+    <img src="statistics/results/test_loss.png" width="400" height="400">
+    <br/>
+2. end-to-end matrix:<br/>
+    <br/>
+    <img src="statistics/results/end_to_end_matrix.png" width="400" height="400">
+    <br/>
