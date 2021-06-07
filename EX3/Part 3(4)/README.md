@@ -30,7 +30,7 @@ pip install -r requirments.txt
 
 Dataset is a noisy sample of trigonometric tan(x)
 <br/>
-<img src="dataset/dataset.png" width="800" height="300">
+<img src="dataset/dataset.png" width="1200" height="200">
 <br/>
 
 ## Usage
