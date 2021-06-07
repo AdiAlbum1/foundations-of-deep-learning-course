@@ -40,29 +40,10 @@ Dataset is a noisy sample of trigonometric tan(x)
     ```sh
     python statistics/visualize_loss.py
     ```
-3. For visualizing the weights' gradient magnitude throughout training, run:
-    ```sh
-    python statistics/visualize_weights_gradient_magnitude.py
-    ```
-4. For visualizing the weights' gradient Hessian min and max eigenvalue, run:
-    ```sh
-    python statistics/visualize_min_and_max_hessian_eigenvals.py
-    ```
 
 ## Results
-1. Training procedure - Train and Test Loss:<br/>
-    <br/>
-    <img src="statistics/results/train_loss.png" width="400" height="400">
-    <img src="statistics/results/test_loss.png" width="400" height="400">
-    <br/>
-
-2. Weights' gradient magnitude<br/>
-    <br/>
-    <img src="statistics/results/weights_gradient_magnitude.png" width="400" height="400">
-    <br/>
-
-3. Weights' gradient Hessian min and max eigenvalue<br/>
-    <br/>
-    <img src="statistics/results/min_eigenvals.png" width="400" height="400">
-    <img src="statistics/results/max_eigenvals.png" width="400" height="400">
-    <br/>
+Training procedure - Train and Test Loss:<br/>
+<br/>
+<img src="statistics/results/train_loss.png" width="400" height="400">
+<img src="statistics/results/test_loss.png" width="400" height="400">
+<br/>
