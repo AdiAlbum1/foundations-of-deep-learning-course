@@ -11,9 +11,6 @@ if __name__ == "__main__":
     # load dataset
     train_generator, test_generator = load_dataset(batch_size)
 
-    t1, l1 = next(train_generator)
-    print(t1.shape)
-
     # load MobileNetV2 model
     # option 1 - Random weights, train all layers
     base_model = MobileNetV2(include_top=False, input_shape=(32, 32, 3), weights=None)
