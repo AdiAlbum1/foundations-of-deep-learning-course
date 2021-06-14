@@ -34,6 +34,6 @@ if __name__ == "__main__":
     model = Model(inputs=base_model.input, outputs=predictions)
 
     # training procdure
-    opt = Adam(learning_rate=1e-4)
+    opt = Adam()
     model.compile(optimizer=opt, loss='categorical_crossentropy', metrics='accuracy')
     model.fit_generator(train_generator, validation_data=test_generator, epochs=20)
