@@ -84,7 +84,6 @@ def load_dataset(batch_size):
     # Unpickle test dataset
     test_images, test_labels = unpickle_test_dataset()
 
-
     train_images, test_images = np.array(train_images), np.array(test_images)
 
     # Reorganize images to RGB format
