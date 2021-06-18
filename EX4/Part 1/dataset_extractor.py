@@ -36,25 +36,8 @@ def unpickle_test_dataset():
 
     return test_images, test_labels
 
-
-def subsample_dataset(images, labels):
-    # Simultaneously shuffle images and labels
-    combined = list(zip(images, labels))
-    random.shuffle(combined)
-    images, labels = zip(*combined)
-
-    # Subsample 10%
-    new_size = len(images) // 10
-
-    subsampled_images = images[:new_size]
-    subsampled_labels = labels[:new_size]
-
-    return subsampled_images, subsampled_labels
-
-
 def normalize_dataset(images):
     images = images / 255.0
-    # images = [image / 255.0 for image in images]
     return images
 
 
@@ -174,19 +157,10 @@ def load_half_cifar_half_random_dataset(batch_size):
     random_test_labels = to_categorical(random_test_labels, 10)
 
     # merge cifar and random data
-    train_images = half_cifar_train_images + random_train_images
-    train_labels = half_cifar_train_labels + random_train_labels
-    test_images = half_cifar_test_images + random_test_images
-    test_labels = half_cifar_test_labels + random_test_labels
-
-    # Simultaneously shuffle images and labels
-    combined = list(zip(train_images, train_labels))
-    random.shuffle(combined)
-    train_images, train_labels = zip(*combined)
-
-    combined = list(zip(test_images, test_labels))
-    random.shuffle(combined)
-    test_images, test_labels = zip(*combined)
+    train_images = np.concatenate((half_cifar_train_images, random_train_images))
+    train_labels = np.concatenate((half_cifar_train_labels, random_train_labels))
+    test_images = np.concatenate((half_cifar_test_images, random_test_images))
+    test_labels = np.concatenate((half_cifar_test_labels, random_test_labels))
 
     # Organize data in PyTorch DataLoader
     gen = ImageDataGenerator()
@@ -217,30 +191,21 @@ def load_half_cifar_half_adverserial_dataset(batch_size):
     half_cifar_test_images, half_cifar_test_labels = cifar_test_images[:len(cifar_test_images)//2], cifar_test_labels[:len(cifar_test_labels)//2]
 
     other_half_cifar_train_images, other_half_cifar_train_labels = cifar_train_images[len(cifar_train_images)//2:], cifar_train_labels[len(cifar_train_labels)//2:]
-    other_half_cifar_test_images, other_half_cifar_test_labels = cifar_test_images[len(cifar_test_images) // 2:], cifar_test_labels[len(cifar_test_labels) // 2:]
+    other_half_cifar_test_images, other_half_cifar_test_labels = cifar_test_images[len(cifar_test_images)//2:], cifar_test_labels[len(cifar_test_labels)//2:]
 
     # adverserialy label second half of dataset
     other_half_cifar_train_labels = adverserial_labeler(other_half_cifar_train_labels)
     other_half_cifar_test_labels = adverserial_labeler(other_half_cifar_test_labels)
 
     # merge cifar and adverserial data
-    train_images = half_cifar_train_images + other_half_cifar_train_images
-    train_labels = half_cifar_train_labels + other_half_cifar_train_labels
-    test_images = half_cifar_test_images + other_half_cifar_test_images
-    test_labels = half_cifar_test_labels + other_half_cifar_test_labels
-
-    # Simultaneously shuffle images and labels
-    combined = list(zip(train_images, train_labels))
-    random.shuffle(combined)
-    train_images, train_labels = zip(*combined)
-
-    combined = list(zip(test_images, test_labels))
-    random.shuffle(combined)
-    test_images, test_labels = zip(*combined)
+    train_images = np.concatenate((half_cifar_train_images, other_half_cifar_train_images))
+    train_labels = np.concatenate((half_cifar_train_labels, other_half_cifar_train_labels))
+    test_images = np.concatenate((half_cifar_test_images, other_half_cifar_test_images))
+    test_labels = np.concatenate((half_cifar_test_labels, other_half_cifar_test_labels))
 
     # transform labels to one-hot encoding
-    random_train_labels = to_categorical(train_labels, 10)
-    random_test_labels = to_categorical(test_labels, 10)
+    train_labels = to_categorical(train_labels, 10)
+    test_labels = to_categorical(test_labels, 10)
 
     # Organize data in PyTorch DataLoader
     gen = ImageDataGenerator()
