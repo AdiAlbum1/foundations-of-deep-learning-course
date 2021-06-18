@@ -3,13 +3,14 @@ from tensorflow.keras.layers import Dense, Flatten
 from tensorflow.keras.models import Model
 from tensorflow.keras.optimizers import Adam
 
-from dataset_extractor import load_dataset
+from dataset_extractor import load_cifar_dataset, load_random_dataset, load_half_cifar_half_random_dataset
 
 if __name__ == "__main__":
     batch_size = 32
 
     # load dataset
-    train_generator, test_generator = load_dataset(batch_size)
+    # train_generator, test_generator = load_cifar_dataset(batch_size)
+    train_generator, test_generator = load_random_dataset(batch_size)
 
     # load MobileNetV2 model
     # option 1 - Random weights, train all layers

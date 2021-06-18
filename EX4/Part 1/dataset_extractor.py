@@ -4,6 +4,7 @@ import random
 from PIL import Image
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.utils import to_categorical
+import tensorflow as tf
 
 DATASET_BATCHES = 5
 DATASET_DIR = "dataset/cifar-10-batches-py/"
@@ -76,8 +77,22 @@ def reorganize_images_shape(images):
 
     return reorganized_images
 
+def adverserial_permutation(label):
+    # 0 --> 1, 1 --> 2, 2 --> 3, ... , 8 --> 9, 9 --> 0
+    if label < 9:
+        new_label = label + 1
+    else:
+        new_label = 0
+    return new_label
 
-def load_dataset(batch_size):
+def adverserial_labeler(labels):
+    adverserial_labels = [0] * len(labels)
+    for i, label in enumerate(labels):
+        adverserial_labels[i] = adverserial_permutation(label)
+    return adverserial_labels
+
+
+def load_cifar_dataset(batch_size):
     # Unpickle and merge whole CIFAR-10 dataset
     train_images, train_labels = unpickle_and_merge_train_dataset()
 
@@ -93,6 +108,24 @@ def load_dataset(batch_size):
     # Normalize images to [0,1] range by dividing by 255.0
     train_images = normalize_dataset(train_images)
     test_images = normalize_dataset(test_images)
+
+    # transform labels to one-hot encoding
+    train_labels = to_categorical(train_labels, 10)
+    test_labels = to_categorical(test_labels, 10)
+
+    # Organize data in PyTorch DataLoader
+    gen = ImageDataGenerator()
+    train_generator = gen.flow(train_images, train_labels, batch_size=batch_size, shuffle=True)
+    test_generator = gen.flow(test_images, test_labels, batch_size=batch_size, shuffle=True)
+
+    return train_generator, test_generator
+
+def load_random_dataset(batch_size):
+    train_images = tf.random.uniform(shape=(50000,32, 32, 3))
+    test_images = tf.random.uniform(shape=(10000, 32, 32, 3))
+
+    train_labels = tf.random.uniform(shape=(50000, 1), minval=0, maxval=9, dtype=tf.int32)
+    test_labels = tf.random.uniform(shape=(10000, 1), minval=0, maxval=9, dtype=tf.int32)
 
     # transform labels to one-hot encoding
     train_labels = to_categorical(train_labels, 10)
