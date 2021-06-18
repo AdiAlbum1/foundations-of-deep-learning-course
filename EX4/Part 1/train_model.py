@@ -10,7 +10,8 @@ if __name__ == "__main__":
 
     # load dataset
     # train_generator, test_generator = load_cifar_dataset(batch_size)
-    train_generator, test_generator = load_random_dataset(batch_size)
+    # train_generator, test_generator = load_random_dataset(batch_size)
+    train_generator, test_generator = load_half_cifar_half_random_dataset(batch_size)
 
     # load MobileNetV2 model
     # option 1 - Random weights, train all layers

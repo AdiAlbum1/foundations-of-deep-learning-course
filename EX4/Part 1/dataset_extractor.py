@@ -137,3 +137,61 @@ def load_random_dataset(batch_size):
     test_generator = gen.flow(test_images, test_labels, batch_size=batch_size, shuffle=True)
 
     return train_generator, test_generator
+
+def load_half_cifar_half_random_dataset(batch_size):
+    # Unpickle and merge whole CIFAR-10 dataset
+    cifar_train_images, cifar_train_labels = unpickle_and_merge_train_dataset()
+
+    # Unpickle test dataset
+    cifar_test_images, cifar_test_labels = unpickle_test_dataset()
+
+    cifar_train_images, cifar_test_images = np.array(cifar_train_images), np.array(cifar_test_images)
+
+    # Reorganize images to RGB format
+    cifar_train_images = reorganize_images_shape(cifar_train_images)
+    cifar_test_images = reorganize_images_shape(cifar_test_images)
+
+    # Normalize images to [0,1] range by dividing by 255.0
+    cifar_train_images = normalize_dataset(cifar_train_images)
+    cifar_test_images = normalize_dataset(cifar_test_images)
+
+    # transform labels to one-hot encoding
+    cifar_train_labels = to_categorical(cifar_train_labels, 10)
+    cifar_test_labels = to_categorical(cifar_test_labels, 10)
+
+    # half dataset
+    half_cifar_train_images, half_cifar_train_labels = cifar_train_images[:len(cifar_train_images)//2], cifar_train_labels[:len(cifar_train_labels)//2]
+    half_cifar_test_images, half_cifar_test_labels = cifar_test_images[:len(cifar_test_images)//2], cifar_test_labels[:len(cifar_test_labels)//2]
+
+    random_train_images = tf.random.uniform(shape=(25000,32, 32, 3))
+    random_test_images = tf.random.uniform(shape=(5000, 32, 32, 3))
+
+    random_train_labels = tf.random.uniform(shape=(25000, 1), minval=0, maxval=9, dtype=tf.int32)
+    random_test_labels = tf.random.uniform(shape=(5000, 1), minval=0, maxval=9, dtype=tf.int32)
+
+    # transform labels to one-hot encoding
+    random_train_labels = to_categorical(random_train_labels, 10)
+    random_test_labels = to_categorical(random_test_labels, 10)
+
+    # merge cifar and random data
+    train_images = half_cifar_train_images + random_train_images
+    train_labels = half_cifar_train_labels + random_train_labels
+    test_images = half_cifar_test_images + random_test_images
+    test_labels = half_cifar_test_labels + random_test_labels
+
+    # Simultaneously shuffle images and labels
+    combined = list(zip(train_images, train_labels))
+    random.shuffle(combined)
+    train_images, train_labels = zip(*combined)
+
+    combined = list(zip(test_images, test_labels))
+    random.shuffle(combined)
+    test_images, test_labels = zip(*combined)
+
+    # Organize data in PyTorch DataLoader
+    gen = ImageDataGenerator()
+    train_generator = gen.flow(train_images, train_labels, batch_size=batch_size, shuffle=True)
+    test_generator = gen.flow(test_images, test_labels, batch_size=batch_size, shuffle=True)
+
+    return train_generator, test_generator
+
