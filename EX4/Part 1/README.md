@@ -37,4 +37,23 @@ python train_model.py
 ```
 
 ## Results
-TBD
+1. Training procedure on CIFAR10 - Train & Test:<br/>
+    <br/>
+    <img src="statistics/results/A_loss.png" width="400" height="400">
+    <img src="statistics/results/A_accuracy.png" width="400" height="400">
+    <br/>
+2. Training procedure on random data - Train & Test:<br/>
+    <br/>
+    <img src="statistics/results/B_loss.png" width="400" height="400">
+    <img src="statistics/results/B_accuracy.png" width="400" height="400">
+    <br/>
+3. Training procedure on half CIFAR10 and half random data - Train & Test:<br/>
+    <br/>
+    <img src="statistics/results/C_loss.png" width="400" height="400">
+    <img src="statistics/results/C_accuracy.png" width="400" height="400">
+    <br/>
+4. Training procedure on half CIFAR10 and half adverserially labeled CIFAR10 - Train & Test:</br>
+    <br/>
+    <img src="statistics/results/D_loss.png" width="400" height="400">
+    <img src="statistics/results/D_accuracy.png" width="400" height="400">
+    <br/>
