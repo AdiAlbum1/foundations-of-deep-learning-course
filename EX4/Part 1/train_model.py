@@ -48,4 +48,4 @@ if __name__ == "__main__":
     test_loss = np.array(train_stats.history['val_loss'])
     test_accuracy = np.array(train_stats.history['val_accuracy'])
 
-    np.save("statistics/results/A_train_statistics", np.vstack((train_loss, train_accuracy, test_loss, test_accuracy)))
+    np.save("statistics/results/train_statistics", np.vstack((train_loss, train_accuracy, test_loss, test_accuracy)))
