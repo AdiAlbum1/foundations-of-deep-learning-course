@@ -85,7 +85,7 @@
 	On the other hand, in DL, any reasonable training program is non-convex.
 	We will prove non-convexity for a general case of settings. Consider a feed-forward fully connected NN with depth $N\geq2$ and activation $\sigma(\cdot)$:
 	\begin{align} \label{eq:feed-forward fully connected NN}
-		H = \{x \mapsto y = W_N(\sigma( W_{N-1}\sigma(W_{N-2}\sigma(\cdots W_2\sigma(W_1x))\cdots) | W_n\in\mathbb{R}^{d_n,d_{n-1}}, n\in\mathbb{N} \}
+		H = \{x \mapsto y = W_N(\sigma( W_{N-1}\sigma(W_{N-2}\sigma(\cdots W_2\sigma(W_1x))\cdots) | W_n\in\mathbb{R}^{d_n,d_{n-1}}, n\in [N]\} \}
 	\end{align}
 	
 	\begin{proposition}
@@ -129,7 +129,7 @@
 	    Homework...
 	\end{proof}
 	\section{Landscape approach}
-	The landscape approach is built on the prmise that if a non-convex objective has no bad local minima and no non-strict saddles, running GD (or SGD) over it will yield global minimum. Such results are typically established using two principles:
+	The landscape approach is built on the premise that if a non-convex objective has no bad local minima and no non-strict saddles, running GD (or SGD) over it will yield global minimum. Such results are typically established using two principles:
 	\begin{itemize}
       \item GD reaches stationary (critical) points
       \item GD escapes strict saddles
@@ -156,7 +156,7 @@
 	    On the other hand, by $\beta$-smoothness of $f(\cdot)$:
 		\begin{align*}
 		    & \forall t\in\mathbb{R}: |h(t)| \leq \norm{\overrightarrow{v}}\cdot\norm{\nabla{f(\overrightarrow{w}+t\overrightarrow{v})}-\nabla{f(\overrightarrow{w}})} \leq \norm{\overrightarrow{v}} \cdot \beta \cdot \norm{\overrightarrow{w}+t\overrightarrow{v} - \overrightarrow{w}} = \beta \cdot t \cdot \norm{v}^2\\
-		    & \Longrightarrow |h'(0)| \leq \beta \norm{\overrightarrow{v}^2}
+		    & \Longrightarrow |h'(0)| \leq \beta \norm{\overrightarrow{v}}^2
 	    \end{align*}
 	    and the desired result follows.
 	\end{proof}
@@ -183,7 +183,7 @@
         Using this with the equality above yields the sought after result.
 	\end{proof}
 	\begin{definition}
-	For a differentiable function $f:\mathbb{R}^d\to\mathbb{R}$ and $\epsilon\geq0$, we say that $w\in\mathbb{R}^d$ is an \underline{$\epsilon$-stationary point} if $\norm{\nabla{f(w)}}\leq\epsilon$
+	For a differentiable function $f:\mathbb{R}^d\to\mathbb{R}$ and $\epsilon\geq0$, we say that $\overrightarrow{w}\in\mathbb{R}^d$ is an \underline{$\epsilon$-stationary point} if $\norm{\nabla{f(\overrightarrow{w})}}\leq\epsilon$
 	\\\underline{Note:} The usual term "Stationary Point" corresponds to the case $\epsilon=0$
 	\end{definition}
 	\begin{theorem}
@@ -231,9 +231,9 @@
     Let $H = U \Lambda U^T$ be an orthogonal eigen decomposition for the (symmetric) matrix $H$,
     \\\ie\ $U\in\mathbb{R}^{d,d}$ is an orthogonal matrix ($UU^T=Id$) and $\Lambda\in\mathbb{R}^{d,d}$ is diagonal. Applying the change of variables $\overrightarrow{w} = U\overrightarrow{\theta} +\overrightarrow{w_s} \Longleftrightarrow \overrightarrow{\theta} = U^T(\overrightarrow{w} - \overrightarrow{w_s})$, we have:
 	\begin{itemize}
-      \item $\tilde{f}(\overrightarrow{w})$ - ${f}(\overrightarrow{w_s})$ = $\frac{1}{2}{\theta}\Lambda{\theta}^T$ = $\frac{1}{2}\sum_{i=1}^{d} \lambda_i{\theta_i}^{2}$  $(\Lambda=diag(\lambda_1, ..., \lambda_d))$
-      \item $\left\lVert \nabla\tilde{f}(w) \right\lVert$ = $\left\lVert U\Lambda{\theta} \right\lVert$ = $\left\lVert \Lambda{\theta} \right\lVert$ = $({\sum_{i=1}^{d} {\lambda_i}^{2}{\theta_i}^{2}})^{0.5}$
-      \item ${\theta}^{(t+1)}$ = ${\theta}^{(t)}$ - $\eta\Lambda{\theta}^{(t)}$ $\Longleftrightarrow$ ${\theta_i}^{(t+1)}$ = $(1-\eta\lambda_i){\theta_i}^{(t)}$, $i \in[d]$
+      \item $\tilde{f}(\overrightarrow{w})$ - ${f}(\overrightarrow{w_s})$ = $\frac{1}{2}{\overrightarrow{\theta}}\Lambda{\overrightarrow{\theta}}^T$ = $\frac{1}{2}\sum_{i=1}^{d} \lambda_i{\theta_i}^{2}$  $(\Lambda=diag(\lambda_1, ..., \lambda_d))$
+      \item $\left\lVert \nabla\tilde{f}(w) \right\lVert$ = $\left\lVert U\Lambda{\overrightarrow{\theta}} \right\lVert$ = $\left\lVert \Lambda{\overrightarrow{\theta}} \right\lVert$ = $({\sum_{i=1}^{d} {\lambda_i}^{2}{\theta_i}^{2}})^{0.5}$
+      \item ${\overrightarrow{\theta}}^{(t+1)}$ = ${\overrightarrow{\theta}}^{(t)}$ - $\eta\Lambda{\overrightarrow{\theta}}^{(t)}$ $\Longleftrightarrow$ ${\theta_i}^{(t+1)}$ = $(1-\eta\lambda_i){\theta_i}^{(t)}$, $i \in[d]$
     \end{itemize}
     Establishing ${\epsilon}$-escaping thus means showing that under the dynamics of ${\theta_t}$ it holds that ${\sum_{i=1}^{d} {\lambda_i}{(\theta_i}^{(t)})^{2}} < 0 $ and ${\sum_{i=1}^{d} {\lambda_i}^{2}{(\theta_i}^{(t)})^{2}} > {\epsilon^{2}} $. Plugging in the dynamics, we may write these conditions as follows:
     
@@ -437,7 +437,7 @@
 	    \begin{align*}
 	        \frac{\partial}{\partial W_N}\Phi({\widehat{W}_1}, {\widehat{W}_2}, ..., {\widehat{W}_N}) = \nabla{l({{\widehat{W}}_{1:N}})}{{\widehat{W}_{1:N-1}}}^T = 0
 	    \end{align*}
-	    If ${{\widehat{W}_{1:N-1}}} \in \mathbb{R}^{d_{N-1}, d_0}$ has a trivial kernel (\ie has linearly dependant columns) then necessarily $\nabla{l({{\widehat{W}_{1:N}}})} = 0$, which by convexity implies that ${{\widehat{W}_{1:N}}}$ is a global min of $l(\cdot)$, \ie $({\widehat{W}_1},..., {\widehat{W}_N})$ is a global min for $\Phi(\cdot)$.
+	    If ${{\widehat{W}_{1:N-1}}} \in \mathbb{R}^{d_{N-1}, d_0}$ has a trivial kernel (\ie has linearly independent columns) then necessarily $\nabla{l({{\widehat{W}_{1:N}}})} = 0$, which by convexity implies that ${{\widehat{W}_{1:N}}}$ is a global min of $l(\cdot)$, \ie $({\widehat{W}_1},..., {\widehat{W}_N})$ is a global min for $\Phi(\cdot)$.
 	    We now assume that ${{\widehat{W}_{1:N-1}}}$ has a non-trivial kernel. It holds that:
 	    \begin{align*}
 	        Ker({{\widehat{W}_{1:1}}}) \subseteq Ker({{\widehat{W}_{1:2}}}) \subseteq \cdots \subseteq Ker({{\widehat{W}_{1:N-1}}})
@@ -468,12 +468,12 @@
 	    \end{figure}
 	   % \includegraphics{svd.png}
 	    \newline
-	    Since $Ker({{\widehat{W}_{1:k}}}) \neq \{0\}$ it must hold that $\sigma_{d_0} = 0$. Denote by $\overrightarrow{\widehat{u_k}}$ the corresponding (\ie the $d_0$\textsuperscript{th}) column of $\widehat{U_k}$. Let $\{\overrightarrow{w_k} \in {\mathbb{R}^{d_k}}\}_{k = k^\ast + 1} ^ N$ be an arbitrary collection of vectors, and define $({\widehat{W}_1}, {\widehat{W}_2}, ... , {\widehat{W}_N})$ by:
+	    Since $Ker({{\widehat{W}_{1:k}}}) \neq \{0\}$ it must hold that $\sigma_{d_0} = 0$. Denote by $\overrightarrow{\widehat{u_k}}$ the corresponding (\ie the $d_0$\textsuperscript{th}) column of $\widehat{U_k}$. Let $\{\overrightarrow{w_k} \in {\mathbb{R}^{d_k}}\}_{k = k^\ast + 1} ^ N$ be an arbitrary collection of vectors, and define $({\widetilde{W}_1}, {\widetilde{W}_2}, ... , {\widetilde{W}_N})$ by:
 	    \begin{align*}
 	        {\widetilde{W}_k}:=
 	            \begin{cases}
 	                    {\widehat{W}_k} & \text{if}\ k \leq k^\ast \\
-	                    {\widehat{W}_k} + \overrightarrow{w_k}\overrightarrow{{\widehat{u}_{k-1}}} & k > k^\ast
+	                    {\widehat{W}_k} + \overrightarrow{w_k}\overrightarrow{{\widehat{u}_{k-1}}}^T & k > k^\ast
 	            \end{cases}
 	    \end{align*}
 	    We claim that ${{\widetilde{W}_{1:N}}} = {{\widehat{W}_{1:N}}}$. (Reminder: ${\widetilde{W}_{j:j'}} := {\widetilde{W}_{j'}} {\widetilde{W}_{j'-1}} \cdots {\widetilde{W}_j}$). \newline
@@ -491,7 +491,7 @@
 	    \end{align*}
 	    In particular we have:
 	    \begin{align*}
-	        & 0 = {\widetilde{W}_{k^\ast+1:N}}^T \nabla{l({\widetilde{W}_{1:N}})} {\widetilde{W}_{1:k^\ast-1}}^T = {\widetilde{W}_{k^\ast+1:N}}^T \nabla{l({\widehat{W}_{1:N}})} {\widetilde{W}_{1:k^\ast-1}}^T \\
+	        & 0 = {\widetilde{W}_{k^\ast+1:N}}^T \nabla{l({\widetilde{W}_{1:N}})} {\widetilde{W}_{1:k^\ast-1}}^T = {\widetilde{W}_{k^\ast+1:N}}^T \nabla{l({\widehat{W}_{1:N}})} {\widehat{W}_{1:k^\ast-1}}^T \\
 	    \end{align*}
 	    (last equality holds because ${\widetilde{W}_{1:N}} = {\widehat{W}_{1:N}}$ and ${\widetilde{W}_k} = {\widehat{W}_k}$, $\forall k \in [k^\ast]$)
 	    \begin{align*}
@@ -525,8 +525,8 @@
     \begin{align*}
         {\nabla\Phi}{({\widehat{W}_1}, {\widehat{W}_2})}
         =
-        ({\widehat{W_2}^T} {\nabla{l}{({\widehat{W}_{1:2}}}^T}),
-        {\nabla{l}{({\widehat{W}_{1:2}}}^T}{\widehat{W_1}^T}))
+        ({\widehat{W_2}^T} {\nabla{l}{({\widehat{W}_{1:2}}}})^T,
+        {\nabla{l}{({\widehat{W}_{1:2}})}^T}{\widehat{W_1}^T})
         =
         (0, 0)
     \end{align*}
@@ -535,7 +535,7 @@
     \begin{itemize}
         \item There exists $(i, j) \in [d]X[d]$ s.t ${{\nabla{l}}{({\widehat{W}_{1:2}})}_{i,j}}
         = c \neq 0$
-        \item $\widehat{W_1}$ and $\widehat{W_2}$ are singular (otherwise we obtain a contradiction to ${\nabla\Phi}{({\widehat{W}_1}, {\widehat{W}_2})} = (0,0)$
+        \item $\widehat{W_1}$ and $\widehat{W_2}$ are singular (otherwise we obtain a contradiction to ${\nabla\Phi}{({\widehat{W}_1}, {\widehat{W}_2})} = (0,0)$)
     \end{itemize}
     Let $\overrightarrow{0} \neq \overrightarrow{v} \in {\mathbb{R}^d}$ be s.t ${W_2}\overrightarrow{v} = \overrightarrow{0}$, and for $\alpha \in \mathbb{R}$ define:
     \begin{align*}
@@ -578,28 +578,28 @@
         (\Delta_1,\Delta_2)
         ]
         =
-        {{\nabla}^{2}}{\Phi}({\widehat{W}_{1:2}})[
+        {{\nabla}^{2}}{l}({\widehat{W}_{1:2}})[
          {\Delta_2}\widehat{W_1},
          {\Delta_2}\widehat{W_1}
         ]
         +
         \alpha \cdot 2 \norm{v}^2 \cdot \langle
-        {{\nabla}^{2}}{l}({\widehat{W}_{1:2}})
+        {\nabla}{l}({\widehat{W}_{1:2}})
         ,
         \overrightarrow{e_i}\cdot{\overrightarrow{e_j}^T}
         \rangle
     \end{align*}
     Note that the left term in the sum does not depend on $\alpha$, and \\ ${\norm{v}^2}\neq 0$ and $\langle
-    {{\nabla}^{2}}{l}({\widehat{W}_{1:2}})
+    {\nabla}{l}({\widehat{W}_{1:2}})
     ,
     \overrightarrow{e_i}\cdot{\overrightarrow{e_j}^T}
     \rangle = c \neq 0$
     \\ 
     Thus implies that we can choose $\alpha \in \mathbb{R}$ s.t 
-    ${{\nabla}^{2}}{\Phi}({\widehat{W}_1}, {\widehat{W}_2})[
-    {\Delta_2}{\widehat{W}_1},
-    {\Delta_2}{\widehat{W}_1}
-    ] < 0$. Hence, ${{\nabla}^{2}}{\Phi}({\widehat{W}_1}, {\widehat{W}_2})$ has negative eigenvalues, meaning $({\widehat{W}_1}, {\widehat{W}_2})$ is a strict saddle, as required.
+    ${{\nabla}^{2}}{\Phi{({\widehat{W}_1}, {\widehat{W}_2})}}[
+        (\Delta_1,\Delta_2),
+        (\Delta_1,\Delta_2)
+        ] < 0$. Hence, ${{\nabla}^{2}}{\Phi}({\widehat{W}_1}, {\widehat{W}_2})$ has negative eigenvalues, meaning $({\widehat{W}_1}, {\widehat{W}_2})$ is a strict saddle, as required.
     \end{proof}
     Moving on to depth $N \geq 3$.
     \begin{proposition}
